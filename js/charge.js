@@ -3,6 +3,7 @@ class Charge {
     this.pos = createVector(x, y);
     this.charge = charge;
     this.lazy = lazy;
+    this.r = 0;
   }
 
   fieldLine(x, y) {
@@ -13,36 +14,24 @@ class Charge {
   }
 
   render() {
-    const c = this.charge ? this.charge * 20 : 20;
+    this.r = 20;
 
     if (this.charge > 0) {
       noStroke();
       fill(this.lazy ? 128 : 255, 0, 0);
-      circle(this.pos.x, this.pos.y, c);
+      ellipseMode(CENTER);
+      ellipse(this.pos.x, this.pos.y, this.r * 2);
       stroke(255);
       fill(255);
       text("+", this.pos.x - 5, this.pos.y + 5);
     } else if (this.charge < 0) {
       noStroke();
       fill(0, 0, this.lazy ? 128 : 255);
-      circle(this.pos.x, this.pos.y, c);
+      ellipseMode(CENTER);
+      ellipse(this.pos.x, this.pos.y, this.r * 2);
       stroke(255);
       fill(255);
       text("-", this.pos.x - 1, this.pos.y + 4);
-    }
-  }
-
-  contains(x, y) {
-    if (
-      x > this.pos.x - this.charge * 20 &&
-      x < this.pos.x + this.charge * 20
-    ) {
-      if (
-        y > this.pos.y - this.charge * 20 &&
-        y < this.pos.y + this.charge * 20
-      ) {
-        return true;
-      }
     }
   }
 }

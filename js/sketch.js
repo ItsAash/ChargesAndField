@@ -12,6 +12,11 @@ let h;
 //images
 let binImage;
 
+const currentlyDragging = {
+  charge: null,
+  status: false,
+};
+
 function preload() {
   // binImage = loadImage('./images/bin.png');
 }
@@ -50,14 +55,6 @@ function draw() {
   }
 }
 
-function mousePressed() {
-  if (mouseButton == LEFT) {
-    charges.push(new Charge(mouseX, mouseY, 1, false));
-  } else if (mouseButton == RIGHT) {
-    charges.push(new Charge(mouseX, mouseY, -1, false));
-  }
-}
-
 function make2DArray(cols, rows) {
   var arr = new Array(cols);
   for (var i = 0; i < arr.length; i++) {
@@ -67,10 +64,27 @@ function make2DArray(cols, rows) {
 }
 
 function mouseDragged() {
-  for (const c of charges) {
-    if (c.contains(mouseX, mouseY)) {
-      c.pos.x = mouseX;
-      c.pos.y = mouseY;
+  if (!currentlyDragging.status) {
+    for (const c of charges) {
+      if (
+        mouseX > c.pos.x - c.r &&
+        mouseX < c.pos.x + c.r &&
+        mouseY > c.pos.y - c.r &&
+        mouseY < c.pos.y + c.r
+      ) {
+        currentlyDragging.status = true;
+        currentlyDragging.charge = c;
+      }
     }
+  } else {
+    const c = currentlyDragging.charge;
+    c.pos.x = mouseX;
+    c.pos.y = mouseY;
+  }
+}
+
+function mouseReleased() {
+  if (currentlyDragging.status) {
+    currentlyDragging.status = false;
   }
 }

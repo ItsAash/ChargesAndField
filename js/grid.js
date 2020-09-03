@@ -17,7 +17,7 @@ class Grid {
 
     rectMode(CENTER);
     noFill();
-    const opacity = map(sum.magSq(), 0, 20, 0, 1) * 5;
+    const opacity = map(sum.magSq(), 0, 10, 0, 1) * 2;
     stroke(0, 204, 0, opacity);
     // rect(x, y, size, size);
     circle(x, y, 4);

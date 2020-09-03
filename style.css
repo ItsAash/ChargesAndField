@@ -1,0 +1,30 @@
+body {
+  margin: 0;
+  width: 100vw;
+}
+
+canvas {
+  display: block;
+}
+
+.controllers {
+  position: absolute;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+  width: 50vw;
+  top: 0;
+  background: white;
+  border-radius: 0 0 30px 30px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.controllers button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
