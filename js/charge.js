@@ -34,4 +34,8 @@ class Charge {
       text("-", this.pos.x - 1, this.pos.y + 4);
     }
   }
+
+  kill() {
+    this.charge = 0;
+  }
 }
