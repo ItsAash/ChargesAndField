@@ -1,3 +1,5 @@
+//CURIOSITY
+
 const size = 30;
 let cols;
 let rows;
