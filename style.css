@@ -14,7 +14,6 @@ canvas {
   padding: 20px;
   width: 50vw;
   top: 0;
-  background: white;
   border-radius: 0 0 30px 30px;
   margin-left: auto;
   margin-right: auto;
@@ -24,7 +23,14 @@ canvas {
 }
 
 .controllers button {
-  background: none;
+  background-color: #4CAF50;
   border: none;
+  
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
   cursor: pointer;
 }
