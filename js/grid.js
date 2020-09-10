@@ -5,6 +5,7 @@ class Grid {
   }
 
   show(charges) {
+    push();
     const x = this.i * size + size / 2;
     const y = this.j * size + size / 2;
     const sum = createVector();
@@ -19,10 +20,17 @@ class Grid {
     noFill();
     const opacity = map(sum.magSq(), 0, 10, 0, 1) * 2;
     stroke(0, 204, 0, opacity);
-    // rect(x, y, size, size);
-    circle(x, y, 4);
+    translate(x, y);
+    circle(0, 0, 4);
     stroke(255, 255, 255, opacity);
     strokeWeight(1);
-    line(x, y, x + sum.x, y + sum.y);
+    line(0, 0, sum.x, sum.y);
+
+    rotate(sum.heading());
+    let arrowSize = 7;
+
+    translate(sum.mag() - arrowSize, 0);
+    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+    pop();
   }
 }

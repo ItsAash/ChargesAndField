@@ -21,16 +21,13 @@
 
   <body>
     <div class="controllers">
-      <button
-        class="button__pos btn btn-floating red pulse"
-        onclick="charges.push(new Charge(width/2, height/2, 1, false))"
-      >
+      <button class="button__pos btn btn-floating red pulse" id="pos__button">
         +ve
       </button>
       <h6 class="white-text">Add Charge</h6>
       <button
         class="button__neg btn btn-floating indigo pulse"
-        onclick="charges.push(new Charge(width/2, height/2, -1, false));"
+        id="neg__button"
       >
         -ve
       </button>
@@ -46,6 +43,7 @@
     </div>
     <div class="modal mathModal" id="math-modal">
       <p
+        onClick="()=>{closeModal(`mathModal`)}"
         class="modal-close"
         style="
           font-weight: bolder;
@@ -69,6 +67,7 @@
 
     <div class="modal summaryModal" id="summary-modal">
       <p
+        onClick="()=>{closeModal(`summaryModal`)}"
         class="modal-close"
         style="
           font-weight: bolder;
@@ -92,13 +91,17 @@
       </div>
     </div>
 
-    <script src="js/sketch.js"></script>
+    <script src="modes/circularMotion.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/grid.js"></script>
     <script src="js/charge.js"></script>
+
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        M.AutoInit();
-      });
+      M.AutoInit();
+      const closeModal = (className) => {
+        const modal = document.querySelector(`.${className}`);
+        M.Modal.getInstance(modal).close();
+      };
     </script>
   </body>
 </html>
