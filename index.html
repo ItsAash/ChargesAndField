@@ -22,14 +22,14 @@
   <body>
     <div class="controllers">
       <button
-        class="button__pos btn btn-floating indigo pulse"
+        class="button__pos btn btn-floating red pulse"
         onclick="charges.push(new Charge(width/2, height/2, 1, false))"
       >
         +ve
       </button>
       <h6 class="white-text">Add Charge</h6>
       <button
-        class="button__neg btn btn-floating red pulse"
+        class="button__neg btn btn-floating indigo pulse"
         onclick="charges.push(new Charge(width/2, height/2, -1, false));"
       >
         -ve
@@ -46,7 +46,6 @@
     </div>
     <div class="modal mathModal" id="math-modal">
       <p
-        onclick="()=>{closeModal(`mathModal`)}"
         class="modal-close"
         style="
           font-weight: bolder;
@@ -70,7 +69,6 @@
 
     <div class="modal summaryModal" id="summary-modal">
       <p
-        onclick="()=>{closeModal(`summaryModal`)}"
         class="modal-close"
         style="
           font-weight: bolder;
@@ -98,11 +96,9 @@
     <script src="js/grid.js"></script>
     <script src="js/charge.js"></script>
     <script>
-      M.AutoInit();
-      const closeModal = (className) => {
-        const modal = document.querySelector(`.${className}`);
-        M.Modal.getInstance(modal).close();
-      };
+      document.addEventListener("DOMContentLoaded", () => {
+        M.AutoInit();
+      });
     </script>
   </body>
 </html>

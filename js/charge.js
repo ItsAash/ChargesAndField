@@ -13,6 +13,8 @@ class Charge {
     return disp;
   }
 
+
+
   render() {
     this.r = 20;
 
