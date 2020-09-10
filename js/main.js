@@ -39,8 +39,6 @@ function preload() {
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
-  // cols = (width / size) | 0;
-  // rows = (width / size) | 0;
   cols = floor(width / size);
   rows = floor(height / size);
 
@@ -69,9 +67,11 @@ function draw() {
     c.render();
   }
 
-  if (motion) {
-    // motion.init();
-  }
+  // Uncomment the below if statement to visuilize circular mode
+
+  // if (motion) {
+  //   motion.init();
+  // }
 
   drawBin();
 }
@@ -138,5 +138,5 @@ function addCharge(e) {
     charges.push(new Charge(width / 2, height / 2, -1, false));
   }
 
-  motion = new CircularMode(charges[charges.length - 1], 0.01, 20);
+  motion = new CircularMode(charges[charges.length - 1], 0.1, 100);
 }
