@@ -1,5 +1,12 @@
 //CURIOSITY
 
+// DOM variables
+const addPosCharge = document.getElementById("pos__button");
+const negPosCharge = document.getElementById("neg__button");
+
+// circular motion testing
+let motion;
+
 const size = 30;
 let cols;
 let rows;
@@ -62,6 +69,10 @@ function draw() {
     c.render();
   }
 
+  if (motion) {
+    // motion.init();
+  }
+
   drawBin();
 }
 
@@ -112,4 +123,20 @@ function mouseReleased() {
 function drawBin() {
   binImage.resize(binOptions.width, binOptions.height);
   image(binImage, binOptions.x, binOptions.y);
+}
+
+addPosCharge.addEventListener("click", addCharge);
+negPosCharge.addEventListener("click", addCharge);
+
+function addCharge(e) {
+  const target = e.target;
+
+  if (target.id === "pos__button") {
+    charges.push(new Charge(width / 2, height / 2, 1, false));
+  }
+  if (target.id === "neg__button") {
+    charges.push(new Charge(width / 2, height / 2, -1, false));
+  }
+
+  motion = new CircularMode(charges[charges.length - 1], 0.01, 20);
 }
