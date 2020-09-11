@@ -69,9 +69,9 @@ function draw() {
 
   // Uncomment the below if statement to visuilize circular mode
 
-  // if (motion) {
-  //   motion.init();
-  // }
+  if (motion) {
+    motion.init();
+  }
 
   drawBin();
 }
