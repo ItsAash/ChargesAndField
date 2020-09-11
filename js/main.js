@@ -28,8 +28,12 @@ let binImage;
 let binOptions = {
   width: 70,
   height: 70,
-  x: 0,
-  y: 0,
+  x: 10,
+  y:
+    Math.max(
+      document.documentElement.clientHeight || 0,
+      window.innerHeight || 0
+    ) - 100,
 };
 
 function preload() {
@@ -125,6 +129,14 @@ function drawBin() {
   image(binImage, binOptions.x, binOptions.y);
 }
 
+function showError() {
+  document.querySelector(".error").style.display = "block";
+
+  setTimeout(() => {
+    document.querySelector(".error").style.display = "none";
+  }, 2000);
+}
+
 addPosCharge.addEventListener("click", addCharge);
 negPosCharge.addEventListener("click", addCharge);
 
@@ -132,10 +144,21 @@ function addCharge(e) {
   const target = e.target;
 
   if (target.id === "pos__button") {
-    charges.push(new Charge(width / 2, height / 2, 1, false));
+    var arge;
+    const PC = document.querySelector(".pos_input").value; //PC => Positive Charge
+    if (PC > 10) {
+      showError();
+    } else if (PC > 0) {
+      charges.push(new Charge(width / 2, height / 2, PC, false));
+    }
   }
   if (target.id === "neg__button") {
-    charges.push(new Charge(width / 2, height / 2, -1, false));
+    const NC = document.querySelector(".neg_input").value; //NC => Negative Charge
+    if (NC > 10) {
+      showError();
+    } else if (NC > 0) {
+      charges.push(new Charge(width / 2, height / 2, -NC, false));
+    }
   }
 
   motion = new CircularMode(charges[charges.length - 1], 0.1, 100);

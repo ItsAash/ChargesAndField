@@ -20,17 +20,29 @@
   </head>
 
   <body>
+    <div class="error">
+      <div class="card red lighten-3 text-white" style="padding: 3px 5px">
+        <p>Cannot add charge more than magnitude of 10</p>
+      </div>
+    </div>
     <div class="controllers">
-      <button class="button__pos btn btn-floating red pulse" id="pos__button">
-        +ve
-      </button>
+      <div class="positive">
+        <button class="button__pos btn btn-floating red pulse" id="pos__button">
+          +ve
+        </button>
+        <input min="1" max="10" type="number" class="pos_input white-text" />
+      </div>
+
       <h6 class="white-text">Add Charge</h6>
-      <button
-        class="button__neg btn btn-floating indigo pulse"
-        id="neg__button"
-      >
-        -ve
-      </button>
+      <div class="negative">
+        <button
+          class="button__neg btn btn-floating indigo pulse"
+          id="neg__button"
+        >
+          -ve
+        </button>
+        <input min="1" max="10" type="number" class="neg_input white-text" />
+      </div>
     </div>
     <div class="viewButtons">
       <a href="#math-modal" class="modal-trigger"
@@ -38,7 +50,7 @@
       >
 
       <a href="#summary-modal" class="modal-trigger"
-        ><button class="btn waves-effect waves-light">Summary</button></a
+        ><button class="btn waves-effect waves-light">Remarks</button></a
       >
     </div>
     <div class="modal mathModal" id="math-modal">
@@ -81,7 +93,7 @@
         X
       </p>
       <div class="container section">
-        <h5 class="center">Summary</h5>
+        <h5 class="center">Remarks</h5>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam ex
           architecto quod iste aliquid quos. Id corporis porro recusandae
