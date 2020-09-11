@@ -11,7 +11,7 @@ const size = 30;
 let cols;
 let rows;
 
-const charges = [];
+var charges = [];
 const k = 25000;
 
 let magField;
@@ -112,6 +112,8 @@ function mouseDragged() {
       c.pos.y < binOptions.y + binOptions.height
     ) {
       c.kill();
+      // Feature to be added (Remove charge from charges array)
+      charges = charges.filter(charge=> charge.id!= c.id)
     } else {
       console.log("hsss");
     }
@@ -129,35 +131,31 @@ function drawBin() {
   image(binImage, binOptions.x, binOptions.y);
 }
 
-function showError() {
-  document.querySelector(".error").style.display = "block";
-
-  setTimeout(() => {
-    document.querySelector(".error").style.display = "none";
-  }, 2000);
-}
-
 addPosCharge.addEventListener("click", addCharge);
 negPosCharge.addEventListener("click", addCharge);
 
 function addCharge(e) {
   const target = e.target;
+  var arge;
 
-  if (target.id === "pos__button") {
-    var arge;
-    const PC = document.querySelector(".pos_input").value; //PC => Positive Charge
-    if (PC > 10) {
-      showError();
-    } else if (PC > 0) {
-      charges.push(new Charge(width / 2, height / 2, PC, false));
-    }
-  }
-  if (target.id === "neg__button") {
-    const NC = document.querySelector(".neg_input").value; //NC => Negative Charge
-    if (NC > 10) {
-      showError();
-    } else if (NC > 0) {
-      charges.push(new Charge(width / 2, height / 2, -NC, false));
+  if (charges.length >= 5) {
+    document.querySelector(".chargeError").style.display = "block";
+    setTimeout(() => {
+      document.querySelector(".chargeError").style.display = "none";
+    }, 2000);
+  } else {
+    if (target.id === "pos__button") {
+      const PC = document.querySelector(".pos_input").value; //PC => Positive Charge
+
+      if (PC > 0) {
+        charges.push(new Charge(width / 2, height / 2, PC, false));
+      }
+    } else if (target.id === "neg__button") {
+      const NC = document.querySelector(".neg_input").value; //NC => Negative Charge
+
+      if (NC > 0) {
+        charges.push(new Charge(width / 2, height / 2, -NC, false));
+      }
     }
   }
 

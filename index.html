@@ -20,7 +20,12 @@
   </head>
 
   <body>
-    <div class="error">
+    <div class="chargeError">
+      <div class="card red lighten-3 text-white" style="padding: 3px 5px">
+        <p>Maximum number of charge reached i.e 5</p>
+      </div>
+    </div>
+    <div class="error magnitute">
       <div class="card red lighten-3 text-white" style="padding: 3px 5px">
         <p>Cannot add charge more than magnitude of 10</p>
       </div>
@@ -30,7 +35,16 @@
         <button class="button__pos btn btn-floating red pulse" id="pos__button">
           +ve
         </button>
-        <input min="1" max="10" type="number" class="pos_input white-text" />
+        <input
+          min="1"
+          max="10"
+          type="range"
+          step="1"
+          class="pos_input white-text"
+          onchange="{
+    document.querySelector('.positive_value').textContent=  window.event.target.value}"
+        />
+        <p class="positive_value white-text">6</p>
       </div>
 
       <h6 class="white-text">Add Charge</h6>
@@ -41,7 +55,15 @@
         >
           -ve
         </button>
-        <input min="1" max="10" type="number" class="neg_input white-text" />
+        <input
+          min="1"
+          max="10"
+          type="range"
+          class="neg_input white-text"
+          onchange="{
+    document.querySelector('.negative_value').textContent=  window.event.target.value}"
+        />
+        <p class="negative_value white-text">6</p>
       </div>
     </div>
     <div class="viewButtons">

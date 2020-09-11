@@ -1,8 +1,11 @@
+var id = 0;
 class Charge {
   constructor(x, y, charge, lazy) {
     this.pos = createVector(x, y);
     this.charge = charge;
     this.lazy = lazy;
+    this.id = id += 1;
+
     this.r = 0;
   }
 
@@ -12,8 +15,6 @@ class Charge {
     disp.setMag((k * this.charge) / distSq);
     return disp;
   }
-
-
 
   render() {
     this.r = 20;
