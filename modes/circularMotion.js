@@ -25,7 +25,6 @@ class CircularMode {
   init() {
     this.update();
     this.revolve();
-    console.log(this.aVel);
   }
 
   update() {

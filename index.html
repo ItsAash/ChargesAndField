@@ -18,22 +18,34 @@
 </head>
 
 <body>
+  <div class="error">
+    <div class="card red lighten-3 text-white" style="padding: 3px 5px">
+      <p>Cannot add charge more than magnitude of 10</p>
+    </div>
+  </div>
   <div class="controllers">
-    <button class="button__pos btn btn-floating red pulse" id="pos__button">
-      +ve
-    </button>
+    <div class="positive">
+      <button class="button__pos btn btn-floating red pulse" id="pos__button">
+        +ve
+      </button>
+      <input min="1" max="10" value="1" type="number" class="pos_input white-text" />
+    </div>
+
     <h6 class="white-text">Add Charge</h6>
-    <button class="button__neg btn btn-floating indigo pulse" id="neg__button">
-      -ve
-    </button>
+    <div class="negative">
+      <button class="button__neg btn btn-floating indigo pulse" id="neg__button">
+        -ve
+      </button>
+      <input min="1" max="10" value="1" type="number" class="neg_input white-text" />
+    </div>
   </div>
   <div class="viewButtons">
     <a href="#math-modal" class="modal-trigger"><button class="btn waves-effect waves-light">Math</button></a>
 
-    <a href="#summary-modal" class="modal-trigger"><button class="btn waves-effect waves-light">Summary</button></a>
+    <a href="#summary-modal" class="modal-trigger"><button class="btn waves-effect waves-light">Remarks</button></a>
   </div>
   <div class="modal mathModal" id="math-modal">
-    <p onclick="()=>{closeModal(`mathModal`)}" class="modal-close" style="
+    <p onClick="()=>{closeModal(`mathModal`)}" class="modal-close" style="
           font-weight: bolder;
           position: absolute;
           top: 0;
@@ -53,7 +65,7 @@
   </div>
 
   <div class="modal summaryModal" id="summary-modal">
-    <p onclick="()=>{closeModal(`summaryModal`)}" class="modal-close" style="
+    <p onClick="()=>{closeModal(`summaryModal`)}" class="modal-close" style="
           font-weight: bolder;
           position: absolute;
           top: 0;
@@ -78,7 +90,6 @@
   <script src="js/main.js"></script>
   <script src="js/grid.js"></script>
   <script src="js/charge.js"></script>
-
 
   <script>
     M.AutoInit();
