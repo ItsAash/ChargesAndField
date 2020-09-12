@@ -56,6 +56,7 @@ function setup() {
       magField[i][j] = new Grid(i, j);
     }
   }
+  frameRate(200);
 }
 
 function draw() {
@@ -73,9 +74,9 @@ function draw() {
 
   // Uncomment the below if statement to visuilize circular mode
 
-  // if (motion) {
-  //   motion.init();
-  // }
+  if (motion) {
+    motion.init();
+  }
 
   drawBin();
 }
@@ -112,8 +113,7 @@ function mouseDragged() {
       c.pos.y < binOptions.y + binOptions.height
     ) {
       c.kill();
-      // Feature to be added (Remove charge from charges array)
-      charges = charges.filter(charge=> charge.id!= c.id)
+      charges = charges.filter((charge) => charge.id != c.id);
     } else {
       console.log("hsss");
     }
