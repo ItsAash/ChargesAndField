@@ -6,6 +6,7 @@ class Charge {
     this.lazy = lazy;
     this.id = id += 1;
 
+  
     this.r = 0;
   }
 

@@ -1,5 +1,5 @@
 //CURIOSITY
-
+var circularMode;
 // DOM variables
 const addPosCharge = document.getElementById("pos__button");
 const negPosCharge = document.getElementById("neg__button");
@@ -138,11 +138,11 @@ function addCharge(e) {
   const target = e.target;
   var arge;
 
-  if (charges.length >= 5) {
+  if (charges.length >= 5 || (charges.length == 1 && circularMode)) {
     document.querySelector(".chargeError").style.display = "block";
     setTimeout(() => {
       document.querySelector(".chargeError").style.display = "none";
-    }, 2000);
+    }, 3000);
   } else {
     if (target.id === "pos__button") {
       const PC = document.querySelector(".pos_input").value; //PC => Positive Charge

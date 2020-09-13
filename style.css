@@ -20,26 +20,24 @@ canvas {
   left: 0;
   right: 0;
   text-align: center;
-
 }
 
 .viewButtons {
-  z-index: 100;
+  z-index: 10;
   position: absolute;
   display: flex;
   flex-direction: column;
   top: 0;
-  right: 0
+  right: 0;
 }
 
 .viewButtons a {
   margin: 20px;
 }
 
-
 .chargeError {
   position: absolute;
   top: 0;
   display: none;
-  margin: 0 35%
+  margin: 0 35%;
 }

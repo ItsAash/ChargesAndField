@@ -22,7 +22,7 @@
   <body>
     <div class="chargeError">
       <div class="card red lighten-3 text-white" style="padding: 3px 5px">
-        <p>Maximum number of charge reached i.e 5</p>
+        <p>Maximum number of charge reached</p>
       </div>
     </div>
     <div class="controllers">
@@ -73,7 +73,11 @@
       <a href="#summary-modal" class="modal-trigger"
         ><button class="btn waves-effect waves-light">Remarks</button></a
       >
+      <a href="#summary-moda" class="circular"
+        ><button class="btn waves-effect waves-light">Circular</button></a
+      >
     </div>
+
     <div class="modal mathModal" id="math-modal">
       <p
         onClick="()=>{closeModal(`mathModal`)}"
@@ -124,7 +128,7 @@
       </div>
     </div>
 
-    <script src="modes/circularMotion.js"></script>
+    <!-- <script src="modes/circularMotion.js"></script> -->
     <script src="js/main.js"></script>
     <script src="js/grid.js"></script>
     <script src="js/charge.js"></script>
@@ -135,6 +139,16 @@
         const modal = document.querySelector(`.${className}`);
         M.Modal.getInstance(modal).close();
       };
+
+      const circularMotion = document.querySelector(".circular");
+      circularMotion.addEventListener("click", () => {
+        charges = [];
+        console.log("hello world");
+        const body = document.querySelector("body");
+        const script = document.createElement("script");
+        script.src = "modes/circularMotion.js";
+        body.appendChild(script);
+      });
     </script>
   </body>
 </html>
