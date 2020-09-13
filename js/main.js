@@ -74,11 +74,12 @@ function draw() {
 
   // Uncomment the below if statement to visuilize circular mode
 
-  if (motion) {
-    motion.init();
-  }
+  // if (motion) {
+  //   motion.init();
+  // }
 
   drawBin();
+  // showDistance();
 }
 
 function make2DArray(cols, rows) {
@@ -112,10 +113,8 @@ function mouseDragged() {
       c.pos.y > binOptions.y &&
       c.pos.y < binOptions.y + binOptions.height
     ) {
-      c.kill();
+      c.kill(motion || undefined);
       charges = charges.filter((charge) => charge.id != c.id);
-    } else {
-      console.log("hsss");
     }
   }
 }
@@ -129,6 +128,31 @@ function mouseReleased() {
 function drawBin() {
   binImage.resize(binOptions.width, binOptions.height);
   image(binImage, binOptions.x, binOptions.y);
+}
+
+function showDistance() {
+  const maths = [];
+  const calculatedCharges = [];
+  for (const c1 of charges) {
+    for (const c2 of charges) {
+      if (c1 !== c2) {
+        if (
+          calculatedCharges.indexOf([c1.number, c2.number]) !== -1 &&
+          calculatedCharges.indexOf([c2.number, c1.number]) !== -1
+        ) {
+        } else {
+          maths.push(
+            `Distance between ${charges.indexOf(c1) + 1} and ${
+              charges.indexOf(c2) + 1
+            } = ${distBetnCharges(c1, c2)} meter/s`
+          );
+          calculatedCharges.push([c1.number, c2.number]);
+        }
+      }
+    }
+  }
+  // console.log(maths);
+  document.getElementById("maths__here").innerHTML = maths.join("<br />");
 }
 
 addPosCharge.addEventListener("click", addCharge);
@@ -159,5 +183,5 @@ function addCharge(e) {
     }
   }
 
-  motion = new CircularMode(charges[charges.length - 1], 0.1, 100);
+  // motion = new CircularMode(charges[charges.length - 1], 0.07, 100);
 }

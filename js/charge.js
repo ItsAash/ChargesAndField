@@ -7,6 +7,7 @@ class Charge {
     this.id = id += 1;
 
     this.r = 0;
+    this.number = charges.length + 1;
   }
 
   fieldLine(x, y) {
@@ -27,6 +28,7 @@ class Charge {
       stroke(255);
       fill(255);
       text("+", this.pos.x - 5, this.pos.y + 5);
+      text(`${this.number}`, this.pos.x - 5, this.pos.y + 30);
     } else if (this.charge < 0) {
       noStroke();
       fill(0, 0, this.lazy ? 128 : 255);
@@ -35,10 +37,25 @@ class Charge {
       stroke(255);
       fill(255);
       text("-", this.pos.x - 1, this.pos.y + 4);
+      text(`${this.number}`, this.pos.x - 5, this.pos.y + 30);
     }
   }
 
-  kill() {
+  kill(motion) {
     this.charge = 0;
+    console.log(motion);
+    if (motion) {
+      motion.prevPath = [];
+    }
   }
+}
+
+function distBetnCharges(charge1, charge2) {
+  const distance = dist(
+    charge1.pos.x,
+    charge1.pos.y,
+    charge2.pos.x,
+    charge2.pos.y
+  );
+  return floor(distance / 10);
 }
