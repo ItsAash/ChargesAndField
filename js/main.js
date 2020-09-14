@@ -79,7 +79,7 @@ function draw() {
   // }
 
   drawBin();
-  // showDistance();
+  showDistance();
 }
 
 function make2DArray(cols, rows) {
@@ -132,26 +132,19 @@ function drawBin() {
 
 function showDistance() {
   const maths = [];
-  const calculatedCharges = [];
   for (const c1 of charges) {
     for (const c2 of charges) {
       if (c1 !== c2) {
-        if (
-          calculatedCharges.indexOf([c1.number, c2.number]) !== -1 &&
-          calculatedCharges.indexOf([c2.number, c1.number]) !== -1
-        ) {
-        } else {
+        if (c2.number > c1.number) {
           maths.push(
-            `Distance between ${charges.indexOf(c1) + 1} and ${
-              charges.indexOf(c2) + 1
-            } = ${distBetnCharges(c1, c2)} meter/s`
+            `Distance between <b> ${c1.number} </b> and <b> ${
+              c2.number
+            } </b> = ${distBetnCharges(c1, c2)} meter/s`
           );
-          calculatedCharges.push([c1.number, c2.number]);
         }
       }
     }
   }
-  // console.log(maths);
   document.getElementById("maths__here").innerHTML = maths.join("<br />");
 }
 
