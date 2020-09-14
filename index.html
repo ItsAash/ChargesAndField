@@ -73,8 +73,10 @@
       <a href="#summary-modal" class="modal-trigger"
         ><button class="btn waves-effect waves-light">Remarks</button></a
       >
-      <a href="#summary-moda" class="circular"
-        ><button class="btn waves-effect waves-light">Circular</button></a
+    </div>
+    <div class="modalButtons">
+      <a href="##" class="circular"
+        ><button class="btn waves-effect waves-light">Circular Mode</button></a
       >
     </div>
 
@@ -143,7 +145,7 @@
       const circularMotion = document.querySelector(".circular");
       circularMotion.addEventListener("click", () => {
         charges = [];
-        console.log("hello world");
+
         const body = document.querySelector("body");
         const script = document.createElement("script");
         script.src = "modes/circularMotion.js";
