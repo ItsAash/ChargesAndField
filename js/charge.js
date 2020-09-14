@@ -57,5 +57,5 @@ function distBetnCharges(charge1, charge2) {
     charge2.pos.x,
     charge2.pos.y
   );
-  return floor(distance / 10);
+  return floor(distance/10);
 }
