@@ -146,6 +146,8 @@ function showDistance() {
     }
   }
   document.getElementById("maths__here").innerHTML = maths.join("<br />");
+  document.getElementById("remarks__here").innerHTML =
+    "The field lines of the positive charge are directed outwards while the field lines of the negative charge are directed inwards.";
 }
 
 addPosCharge.addEventListener("click", addCharge);
