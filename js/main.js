@@ -1,4 +1,5 @@
 //CURIOSITY
+var circularMode;
 
 // DOM variables
 const addPosCharge = document.getElementById("pos__button");
@@ -12,6 +13,7 @@ let cols;
 let rows;
 
 var charges = [];
+var chargesClone = [];
 const k = 25000;
 
 let magField;
@@ -74,9 +76,9 @@ function draw() {
 
   // Uncomment the below if statement to visuilize circular mode
 
-  // if (motion) {
-  //   motion.init();
-  // }
+  if (motion) {
+    motion.init();
+  }
 
   drawBin();
   showDistance();
@@ -115,6 +117,7 @@ function mouseDragged() {
     ) {
       c.kill(motion || undefined);
       charges = charges.filter((charge) => charge.id != c.id);
+      chargesClone = [...charges];
     }
   }
 }
@@ -157,26 +160,29 @@ function addCharge(e) {
   const target = e.target;
   var arge;
 
-  if (charges.length >= 5) {
+  if (charges.length >= 5 || (charges.length == 1 && circularMode)) {
     document.querySelector(".chargeError").style.display = "block";
     setTimeout(() => {
       document.querySelector(".chargeError").style.display = "none";
-    }, 2000);
+    }, 3000);
   } else {
     if (target.id === "pos__button") {
       const PC = document.querySelector(".pos_input").value; //PC => Positive Charge
 
       if (PC > 0) {
         charges.push(new Charge(width / 2, height / 2, PC, false));
+        chargesClone = [...charges];
       }
     } else if (target.id === "neg__button") {
       const NC = document.querySelector(".neg_input").value; //NC => Negative Charge
 
       if (NC > 0) {
         charges.push(new Charge(width / 2, height / 2, -NC, false));
+        chargesClone = [...charges];
       }
     }
   }
-
-  // motion = new CircularMode(charges[charges.length - 1], 0.07, 100);
+  if (circularMode) {
+    motion = new CircularMode(charges[charges.length - 1], 0.07, 100);
+  }
 }

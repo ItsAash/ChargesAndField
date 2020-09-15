@@ -43,7 +43,6 @@ class Charge {
 
   kill(motion) {
     this.charge = 0;
-    console.log(motion);
     if (motion) {
       motion.prevPath = [];
     }
