@@ -5,6 +5,8 @@ body {
 
 canvas {
   display: block;
+  width: 100%;
+  height: 100%;
 }
 
 .controllers {
@@ -46,13 +48,19 @@ input[type="range"] {
   border: none;
 }
 
-.modalButtons {
+.modeChange {
   position: absolute;
-  z-index: 20;
-  display: flex;
-  flex-direction: column;
-  top: 20%;
+  z-index: 2000;
+  color: white;
+  top: 5%;
   left: 0;
   padding: 20px;
+}
 
+.modeChange input {
+  color: white !important;
+}
+
+.modeChange svg {
+  fill: rgba(255, 255, 255, 0.87) !important;
 }

@@ -1,5 +1,6 @@
 //CURIOSITY
 var circularMode;
+
 // DOM variables
 const addPosCharge = document.getElementById("pos__button");
 const negPosCharge = document.getElementById("neg__button");
@@ -12,6 +13,7 @@ let cols;
 let rows;
 
 var charges = [];
+var chargesClone = [];
 const k = 25000;
 
 let magField;
@@ -115,6 +117,7 @@ function mouseDragged() {
     ) {
       c.kill(motion || undefined);
       charges = charges.filter((charge) => charge.id != c.id);
+      chargesClone = [...charges];
     }
   }
 }
@@ -166,12 +169,14 @@ function addCharge(e) {
 
       if (PC > 0) {
         charges.push(new Charge(width / 2, height / 2, PC, false));
+        chargesClone = [...charges];
       }
     } else if (target.id === "neg__button") {
       const NC = document.querySelector(".neg_input").value; //NC => Negative Charge
 
       if (NC > 0) {
         charges.push(new Charge(width / 2, height / 2, -NC, false));
+        chargesClone = [...charges];
       }
     }
   }

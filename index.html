@@ -74,10 +74,14 @@
         ><button class="btn waves-effect waves-light">Remarks</button></a
       >
     </div>
-    <div class="modalButtons">
-      <a href="##" class="circular"
-        ><button class="btn waves-effect waves-light">Circular Mode</button></a
-      >
+    <div class="modeChange">
+      <div class="input-field">
+        <select class="change-mode">
+          <option value="" disabled selected>Choose the module</option>
+          <option value="BasicModel">Basic Model</option>
+          <option value="CircularMotion">Circular Motion</option>
+        </select>
+      </div>
     </div>
 
     <div class="modal mathModal" id="math-modal">
@@ -134,7 +138,7 @@
     <script src="js/main.js"></script>
     <script src="js/grid.js"></script>
     <script src="js/charge.js"></script>
-
+    <script src="js/modeChange.js"></script>
     <script>
       M.AutoInit();
       const closeModal = (className) => {
@@ -142,15 +146,10 @@
         M.Modal.getInstance(modal).close();
       };
 
-      const circularMotion = document.querySelector(".circular");
-      circularMotion.addEventListener("click", () => {
-        charges = [];
-
-        const body = document.querySelector("body");
-        const script = document.createElement("script");
-        script.src = "modes/circularMotion.js";
-        body.appendChild(script);
-      });
+      // const circularMotion = document.querySelector(".circular");
+      // circularMotion.addEventListener("click", () => {
+    
+      // });
     </script>
   </body>
 </html>
