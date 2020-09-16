@@ -1,5 +1,6 @@
 //CURIOSITY
 var circularMode;
+var basicMode = true;
 
 // DOM variables
 const addPosCharge = document.getElementById("pos__button");
@@ -81,7 +82,9 @@ function draw() {
   }
 
   drawBin();
-  showDistance();
+  if (basicMode) {
+    showDistance();
+  }
 }
 
 function make2DArray(cols, rows) {

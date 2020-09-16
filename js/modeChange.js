@@ -3,6 +3,7 @@ var toCircularMotion = () => {
   if (chargesClone.length) {
     charges = [chargesClone[0]];
     circularMode = true;
+    basicMode = false;
     const body = document.querySelector("body");
     const script = document.createElement("script");
     script.src = "modes/circularMotion.js";
@@ -22,6 +23,7 @@ selectMode.addEventListener("change", (e) => {
       break;
     case "BasicModel":
       circularMode = false;
+      basicMode = true;
       motion = "";
       const circularModeScript = document.querySelector(".circularModeScript");
       if (circularModeScript) {
