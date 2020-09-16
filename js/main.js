@@ -163,11 +163,13 @@ function addCharge(e) {
   const target = e.target;
   var arge;
 
+  var error = false;
   if (charges.length >= 5 || (charges.length == 2 && circularMode)) {
     document.querySelector(".chargeError").style.display = "block";
     setTimeout(() => {
       document.querySelector(".chargeError").style.display = "none";
     }, 3000);
+    error = true;
   } else {
     if (target.id === "pos__button") {
       const PC = document.querySelector(".pos_input").value; //PC => Positive Charge
@@ -191,7 +193,7 @@ function addCharge(e) {
       }
     }
   }
-  if (circularMode) {
+  if (circularMode && !error) {
     motion = new CircularMode(charges[charges.length - 1], 0.07, 100);
   }
 }

@@ -2,6 +2,7 @@ class CircularMode {
   constructor(charge, aVelocity, radius) {
     this.charge = charge;
     this.aVel = aVelocity;
+    this.aVelFixed = aVelocity;
     this.radius = radius;
 
     this.angle = 0;
@@ -17,18 +18,22 @@ class CircularMode {
     this.maxCharge = 1;
     this.remarks =
       "The field lines change in form of an approximate circle around the point charge as it moves.";
+    document.getElementById("remarks__here").innerHTML = this.remarks;
+
+    this.deleted = false;
   }
 
   updateMaths() {
-    this.maths = `Angular Velocity (ω) = ${this.aVel * 60} radians per sec`;
-    document.getElementById("remarks__here").innerHTML = this.remarks;
+    this.maths = `Angular Velocity (ω) = ${(() => {
+      return this.aVelFixed * 60;
+    })()} radians per sec`;
     document.getElementById("maths__here").innerHTML = this.maths;
   }
 
   init() {
+    this.updateMaths();
     this.update();
     this.revolve();
-    this.updateMaths();
   }
 
   update() {
@@ -57,7 +62,17 @@ class CircularMode {
     const newPos = createVector(x1, y1);
     this.charge.pos = newPos;
     noFill();
-    ellipse(this.originPoint.x, this.originPoint.y, this.radius * 2);
     this.aVel = 0;
+    if (this.deleted) return;
+    ellipse(
+      this.originPoint.x,
+      this.originPoint.y,
+      dist(
+        this.charge.pos.x,
+        this.charge.pos.y,
+        this.originPoint.x,
+        this.originPoint.y
+      ) * 2
+    );
   }
 }

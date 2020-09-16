@@ -43,9 +43,8 @@ class Charge {
 
   kill(motion) {
     this.charge = 0;
-    if (motion) {
-      motion.prevPath = [];
-    }
+    motion.deleted = true;
+    motion = undefined;
   }
 }
 
