@@ -158,7 +158,7 @@ function addCharge(e) {
   const target = e.target;
   var arge;
 
-  if (charges.length >= 5 || (charges.length == 1 && circularMode)) {
+  if (charges.length >= 5 || (charges.length == 2 && circularMode)) {
     document.querySelector(".chargeError").style.display = "block";
     setTimeout(() => {
       document.querySelector(".chargeError").style.display = "none";
@@ -170,6 +170,12 @@ function addCharge(e) {
       if (PC > 0) {
         charges.push(new Charge(width / 2, height / 2, PC, false));
         chargesClone = [...charges];
+        if (
+          document.querySelector("select").value == "CircularMotion" &&
+          !circularMode
+        ) {
+          toCircularMotion();
+        }
       }
     } else if (target.id === "neg__button") {
       const NC = document.querySelector(".neg_input").value; //NC => Negative Charge

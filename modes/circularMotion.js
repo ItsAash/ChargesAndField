@@ -18,8 +18,7 @@ class CircularMode {
     this.remarks =
       "The field lines change in form of an approximate circle around the point charge as it moves.";
     this.maths = `Angular Velocity (ω) = ${aVelocity * 60} radians per sec`;
-    document.getElementById("remarks__here").innerHTML = this.remarks;
-    document.getElementById("maths__here").innerHTML = this.maths;
+   
   }
 
   init() {
