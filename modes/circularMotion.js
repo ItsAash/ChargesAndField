@@ -56,29 +56,6 @@ class CircularMode {
     this.prevPath.push(pointToBeRotated);
     const newPos = createVector(x1, y1);
     this.charge.pos = newPos;
-    // for (let path of this.prevPath) {
-    // push();
-    // if (this.charge.charge > 0) {
-    // stroke(255, 0, 0);
-    // } else if (this.charge.charge < 0) {
-    // stroke(0, 0, 255);
-    // } else {
-    // continue;
-    // }
-    // strokeWeight(1);
-    // point(path.x, path.y);
-    // pop();
-    // }
-    // console.log(2 * PI * this.radius);
-    // if (this.prevPath.length > PI * this.radius) {
-    // this.prevPath.shift();
-    // }
-    // line(
-    //   this.charge.pos.x,
-    //   this.charge.pos.y,
-    //   this.originPoint.x,
-    //   this.originPoint.y
-    // );
     noFill();
     ellipse(this.originPoint.x, this.originPoint.y, this.radius * 2);
     this.aVel = 0;
