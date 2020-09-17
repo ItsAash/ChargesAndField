@@ -1,13 +1,15 @@
 //CURIOSITY
-var circularMode;
+var circularMode = false;
+var fieldLineMode = false;
 var basicMode = true;
 
 // DOM variables
 const addPosCharge = document.getElementById("pos__button");
 const negPosCharge = document.getElementById("neg__button");
 
-// circular motion testing
+//  modes
 let motion;
+let fieldLine;
 
 const size = 30;
 let cols;
@@ -81,10 +83,14 @@ function draw() {
     motion.init();
   }
 
-  drawBin();
+  if (fieldLine) {
+    fieldLine.init();
+  }
+
   if (basicMode) {
     showDistance();
   }
+  drawBin();
 }
 
 function make2DArray(cols, rows) {

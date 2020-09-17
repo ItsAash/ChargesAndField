@@ -12,10 +12,6 @@ class CircularMode {
       y: charge.pos.y,
     };
 
-    this.prevPath = [];
-
-    //
-    this.maxCharge = 1;
     this.remarks =
       "The field lines change in form of an approximate circle around the point charge as it moves.";
     document.getElementById("remarks__here").innerHTML = this.remarks;
@@ -25,7 +21,7 @@ class CircularMode {
 
   updateMaths() {
     this.maths = `Angular Velocity (ω) = ${(() => {
-      return this.aVelFixed * 60;
+      return floor(this.aVelFixed * 60);
     })()} radians per sec`;
     document.getElementById("maths__here").innerHTML = this.maths;
   }
