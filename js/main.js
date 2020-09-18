@@ -1,8 +1,5 @@
 //CURIOSITY
-var circularMode = false;
-var fieldLineMode = false;
 var basicMode = true;
-var ratioMode = false;
 
 // DOM variables
 const addPosCharge = document.getElementById("pos__button");
@@ -81,16 +78,16 @@ function draw() {
 
   // Uncomment the below if statement to visuilize circular mode
 
+  if (basicMode) {
+    showDistance();
+  }
+
   if (motion) {
     motion.init();
   }
 
   if (fieldLine) {
     fieldLine.init();
-  }
-
-  if (basicMode) {
-    showDistance();
   }
 
   if (ratio) {

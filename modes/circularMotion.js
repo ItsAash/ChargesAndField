@@ -54,7 +54,6 @@ class CircularMode {
       (pointToBeRotated.y - coordinatesOfCenterOfRotation.y) *
         cos(angleToBeRotated) +
       coordinatesOfCenterOfRotation.y;
-    this.prevPath.push(pointToBeRotated);
     const newPos = createVector(x1, y1);
     this.charge.pos = newPos;
     noFill();

@@ -3,10 +3,6 @@ var toCircularMotion = () => {
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
-    circularMode = true;
-    basicMode = false;
-    fieldLineMode = false;
-
     const body = document.querySelector("body");
     const script = document.createElement("script");
     script.src = "modes/circularMotion.js";
@@ -25,11 +21,6 @@ var toRatioBetweenForces = () => {
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
-    circularMode = false;
-    basicMode = false;
-    fieldLineMode = false;
-    ratioMode = true;
-
     const body = document.querySelector("body");
     const script = document.createElement("script");
     script.src = "modes/ratioBetweenForces.js";
@@ -47,10 +38,6 @@ var toFieldLine = () => {
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
-    circularMode = false;
-    basicMode = false;
-    fieldLineMode = true;
-
     const body = document.querySelector("body");
     const script = document.createElement("script");
     script.src = "modes/fieldLinesAndDipole.js";
@@ -66,19 +53,20 @@ var toFieldLine = () => {
 };
 
 selectMode.addEventListener("change", (e) => {
+  fieldLine = undefined;
+  motion = undefined;
+  ratio = undefined;
   switch (selectMode.value) {
     case "CircularMotion":
       toCircularMotion();
       break;
     case "BasicModel":
-      circularMode = false;
       basicMode = true;
-      fieldLine = false;
-      ratioMode = false;
 
-      fieldLine = undefined;
-      motion = undefined;
-      ratio = undefined;
+      // fieldLine = undefined;
+      // motion = undefined;
+      // ratio = undefined;
+
       const modeScript = document.querySelector(".modeScript");
       if (modeScript) {
         charges = [...chargesClone];
