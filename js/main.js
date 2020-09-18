@@ -2,6 +2,7 @@
 var circularMode = false;
 var fieldLineMode = false;
 var basicMode = true;
+var ratioMode = false;
 
 // DOM variables
 const addPosCharge = document.getElementById("pos__button");
@@ -10,6 +11,7 @@ const negPosCharge = document.getElementById("neg__button");
 //  modes
 let motion;
 let fieldLine;
+let ratio;
 
 const size = 30;
 let cols;
@@ -90,6 +92,10 @@ function draw() {
   if (basicMode) {
     showDistance();
   }
+
+  if (ratio) {
+    ratio.init();
+  }
   drawBin();
 }
 
@@ -151,7 +157,7 @@ function showDistance() {
           maths.push(
             `Distance between <b> ${c1.number} </b> and <b> ${
               c2.number
-            } </b> = ${distBetnCharges(c1, c2)} meter/s`
+            } </b> = ${distBetnCharges(c1, c2).toFixed(2)} meter/s`
           );
         }
       }

@@ -21,8 +21,30 @@ var toCircularMotion = () => {
   }
 };
 
+var toRatioBetweenForces = () => {
+  if (chargesClone.length) {
+    charges = chargesClone.slice(0, 2);
+
+    circularMode = false;
+    basicMode = false;
+    fieldLineMode = false;
+    ratioMode = true;
+
+    const body = document.querySelector("body");
+    const script = document.createElement("script");
+    script.src = "modes/ratioBetweenForces.js";
+    script.className = "modeScript";
+    body.appendChild(script);
+
+    setTimeout(() => {
+      ratio = new RatioOfForces(charges);
+      document.getElementById("remarks__here").innerHTML = ratio.remarks;
+    }, 500);
+  }
+};
+
 var toFieldLine = () => {
-  if (charges.length) {
+  if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
     circularMode = false;
@@ -52,7 +74,11 @@ selectMode.addEventListener("change", (e) => {
       circularMode = false;
       basicMode = true;
       fieldLine = false;
+      ratioMode = false;
+
+      fieldLine = undefined;
       motion = undefined;
+      ratio = undefined;
       const modeScript = document.querySelector(".modeScript");
       if (modeScript) {
         charges = [...chargesClone];
@@ -69,7 +95,9 @@ selectMode.addEventListener("change", (e) => {
     case "FieldLine":
       toFieldLine();
       break;
-
+    case "RatioBetweenForces":
+      toRatioBetweenForces();
+      break;
     default:
       break;
   }

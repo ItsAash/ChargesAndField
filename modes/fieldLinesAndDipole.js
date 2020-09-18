@@ -10,12 +10,14 @@ class FieldLines {
 
   updateMaths() {
     const q = Math.abs(this.charges[0].charge);
-    const distance = distBetnCharges(this.charges[0], this.charges[1]);
+    const distance = distBetnCharges(this.charges[0], this.charges[1]).toFixed(
+      2
+    );
 
     const dipoleMoment = (q * distance).toFixed(2);
 
     const maths = `
-    Distance between charges (d) = ${floor(distance)} meters <br />
+    Distance between charges (d) = ${distance} meters <br />
     Charge (q) = ${q}C <br />
     Dipole moment (p) = ${dipoleMoment} C/m `;
     document.getElementById("maths__here").innerHTML = maths;
