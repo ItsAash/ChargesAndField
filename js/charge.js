@@ -1,4 +1,4 @@
-var id = 0;
+var id = 5;
 class Charge {
   constructor(x, y, charge, lazy) {
     this.pos = createVector(x, y);
