@@ -9,6 +9,8 @@ var toCircularMotion = () => {
     script.className = "circularModeScript";
     body.appendChild(script);
 
+    console.log("Hello world");
+
     setTimeout(() => {
       motion = new CircularMode(charges[0], 0.07, 100);
       document.getElementById("remarks__here").innerHTML = motion.remarks;
