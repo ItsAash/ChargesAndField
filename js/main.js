@@ -1,12 +1,15 @@
 //CURIOSITY
-var circularMode;
-
+var basicMode = true;
+var circularMode; // This is needed. Don't delete it.
+var fieldLineMode; //This too
 // DOM variables
 const addPosCharge = document.getElementById("pos__button");
 const negPosCharge = document.getElementById("neg__button");
 
-// circular motion testing
+//  modes
 let motion;
+let fieldLine;
+let ratio;
 
 const size = 30;
 let cols;
@@ -76,12 +79,22 @@ function draw() {
 
   // Uncomment the below if statement to visuilize circular mode
 
+  if (basicMode) {
+    showDistance();
+  }
+
   if (motion) {
     motion.init();
   }
 
+  if (fieldLine) {
+    fieldLine.init();
+  }
+
+  if (ratio) {
+    ratio.init();
+  }
   drawBin();
-  showDistance();
 }
 
 function make2DArray(cols, rows) {
@@ -115,8 +128,15 @@ function mouseDragged() {
       c.pos.y > binOptions.y &&
       c.pos.y < binOptions.y + binOptions.height
     ) {
-      c.kill(motion || undefined);
+      c.kill(motion || null);
       charges = charges.filter((charge) => charge.id != c.id);
+      if (fieldLineMode && charges.length < 2) {
+        document.querySelector("select").value = "BasicModel";
+        fieldLineMode = false;
+      }
+      if (circularMode) {
+        motion = new CircularMode(charges[0], 0.07, 100);
+      }
       chargesClone = [...charges];
     }
   }
@@ -142,13 +162,15 @@ function showDistance() {
           maths.push(
             `Distance between <b> ${c1.number} </b> and <b> ${
               c2.number
-            } </b> = ${distBetnCharges(c1, c2)} meter/s`
+            } </b> = ${distBetnCharges(c1, c2).toFixed(2)} meter/s`
           );
         }
       }
     }
   }
   document.getElementById("maths__here").innerHTML = maths.join("<br />");
+  document.getElementById("remarks__here").innerHTML =
+    "The field lines of the positive charge are directed outwards while the field lines of the negative charge are directed inwards.";
 }
 
 addPosCharge.addEventListener("click", addCharge);
@@ -158,11 +180,16 @@ function addCharge(e) {
   const target = e.target;
   var arge;
 
-  if (charges.length >= 5 || (charges.length == 2 && circularMode)) {
+  var error = false;
+  if (
+    charges.length >= 5 ||
+    (charges.length == 2 && (circularMode || fieldLineMode))
+  ) {
     document.querySelector(".chargeError").style.display = "block";
     setTimeout(() => {
       document.querySelector(".chargeError").style.display = "none";
     }, 3000);
+    error = true;
   } else {
     if (target.id === "pos__button") {
       const PC = document.querySelector(".pos_input").value; //PC => Positive Charge
@@ -186,7 +213,7 @@ function addCharge(e) {
       }
     }
   }
-  if (circularMode) {
+  if (circularMode && !error) {
     motion = new CircularMode(charges[charges.length - 1], 0.07, 100);
   }
 }

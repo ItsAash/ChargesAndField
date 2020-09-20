@@ -43,9 +43,8 @@ class Charge {
 
   kill(motion) {
     this.charge = 0;
-    if (motion) {
-      motion.prevPath = [];
-    }
+    motion.deleted = true;
+    motion = undefined;
   }
 }
 
@@ -56,5 +55,5 @@ function distBetnCharges(charge1, charge2) {
     charge2.pos.x,
     charge2.pos.y
   );
-  return floor(distance / 125);
+  return (distance + (charge1.r + charge2.r)) / 125;
 }

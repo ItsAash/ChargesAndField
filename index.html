@@ -4,8 +4,7 @@
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    
-      />
+    />
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -81,6 +80,8 @@
           <option value="" disabled selected>Choose Mode</option>
           <option value="BasicModel">Basic Model</option>
           <option value="CircularMotion">Circular Motion</option>
+          <option value="FieldLine">Dipole On Linear Axis</option>
+          <option value="RatioBetweenForces">Ratio between forces</option>
         </select>
       </div>
     </div>
@@ -136,10 +137,10 @@
     </div>
 
     <!-- <script src="modes/circularMotion.js"></script> -->
+    <script src="js/modeChange.js"></script>
     <script src="js/main.js"></script>
     <script src="js/grid.js"></script>
     <script src="js/charge.js"></script>
-    <script src="js/modeChange.js"></script>
     <script>
       M.AutoInit();
       const closeModal = (className) => {

@@ -1,7 +1,10 @@
+circularMode = true;
+
 class CircularMode {
   constructor(charge, aVelocity, radius) {
     this.charge = charge;
     this.aVel = aVelocity;
+    this.aVelFixed = aVelocity;
     this.radius = radius;
 
     this.angle = 0;
@@ -11,17 +14,22 @@ class CircularMode {
       y: charge.pos.y,
     };
 
-    this.prevPath = [];
-
-    //
-    this.maxCharge = 1;
     this.remarks =
       "The field lines change in form of an approximate circle around the point charge as it moves.";
-    this.maths = `Angular Velocity (ω) = ${aVelocity * 60} radians per sec`;
-   
+    document.getElementById("remarks__here").innerHTML = this.remarks;
+
+    this.deleted = false;
+  }
+
+  updateMaths() {
+    this.maths = `Angular Velocity (ω) = ${(() => {
+      return floor(this.aVelFixed * 60);
+    })()} radians per sec`;
+    document.getElementById("maths__here").innerHTML = this.maths;
   }
 
   init() {
+    this.updateMaths();
     this.update();
     this.revolve();
   }
@@ -48,26 +56,20 @@ class CircularMode {
       (pointToBeRotated.y - coordinatesOfCenterOfRotation.y) *
         cos(angleToBeRotated) +
       coordinatesOfCenterOfRotation.y;
-    this.prevPath.push(pointToBeRotated);
     const newPos = createVector(x1, y1);
     this.charge.pos = newPos;
-    for (let path of this.prevPath) {
-      push();
-      if (this.charge.charge > 0) {
-        stroke(255, 0, 0);
-      } else if (this.charge.charge < 0) {
-        stroke(0, 0, 255);
-      } else {
-        continue;
-      }
-      strokeWeight(1);
-      point(path.x, path.y);
-      pop();
-    }
-    // console.log(2 * PI * this.radius);
-    if (this.prevPath.length > PI * this.radius) {
-      this.prevPath.shift();
-    }
+    noFill();
     this.aVel = 0;
+    if (this.deleted) return;
+    ellipse(
+      this.originPoint.x,
+      this.originPoint.y,
+      dist(
+        this.charge.pos.x,
+        this.charge.pos.y,
+        this.originPoint.x,
+        this.originPoint.y
+      ) * 2
+    );
   }
 }
