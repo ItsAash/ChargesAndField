@@ -4,12 +4,6 @@ var toNullPoint = () => {
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
-    const body = document.querySelector("body");
-    const script = document.createElement("script");
-    script.src = "modes/nullPointBetweenCharge.js";
-    script.className = "modeScript";
-    body.appendChild(script);
-
     setTimeout(() => {
       nullPoint = new NullPointMode(magField, charges);
       document.getElementById("remarks__here").innerHTML = nullPoint.remarks;
@@ -21,12 +15,6 @@ var toNullPoint = () => {
 var toCircularMotion = () => {
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
-
-    const body = document.querySelector("body");
-    const script = document.createElement("script");
-    script.src = "modes/circularMotion.js";
-    script.className = "modeScript";
-    body.appendChild(script);
 
     setTimeout(() => {
       motion = new CircularMode(charges[0], 0.07, 100);
@@ -40,12 +28,6 @@ var toRatioBetweenForces = () => {
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
-    const body = document.querySelector("body");
-    const script = document.createElement("script");
-    script.src = "modes/ratioBetweenForces.js";
-    script.className = "modeScript";
-    body.appendChild(script);
-
     setTimeout(() => {
       ratio = new RatioOfForces(charges);
       document.getElementById("remarks__here").innerHTML = ratio.remarks;
@@ -56,12 +38,6 @@ var toRatioBetweenForces = () => {
 var toFieldLine = () => {
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
-
-    const body = document.querySelector("body");
-    const script = document.createElement("script");
-    script.src = "modes/fieldLinesAndDipole.js";
-    script.className = "modeScript";
-    body.appendChild(script);
 
     setTimeout(() => {
       fieldLine = new FieldLines(charges);
@@ -79,17 +55,6 @@ function whileChanged(e) {
   ratio = undefined;
   nullPoint = undefined;
   basicMode = false;
-
-  const modeScript = document.querySelector(".modeScript");
-  if (modeScript) {
-    charges = [...chargesClone];
-    const body = document.querySelector("body");
-
-    body.removeChild(modeScript);
-    for (const c of charges) {
-      c.render();
-    }
-  }
 
   switch (selectMode.value) {
     case "CircularMotion":
