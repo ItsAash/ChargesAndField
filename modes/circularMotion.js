@@ -14,7 +14,6 @@ class CircularMode {
 
     this.remarks =
       "The field lines change in form of an approximate circle around the point charge as it moves.";
-    document.getElementById("remarks__here").innerHTML = this.remarks;
 
     this.deleted = false;
   }
@@ -24,6 +23,8 @@ class CircularMode {
       return floor(this.aVelFixed * 60);
     })()} radians per sec`;
     document.getElementById("maths__here").innerHTML = this.maths;
+
+    document.getElementById("remarks__here").innerHTML = this.remarks;
   }
 
   init() {

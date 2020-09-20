@@ -3,7 +3,6 @@ class RatioOfForces {
     this.charges = charges;
     this.remarks =
       "The magnitude of electrostatics force is highly greater than gravitational force between two charges";
-    document.getElementById("remarks__here").innerHTML = this.remarks;
   }
 
   init() {
@@ -50,5 +49,6 @@ class RatioOfForces {
     `;
 
     document.getElementById("maths__here").innerHTML = maths;
+    document.getElementById("remarks__here").innerHTML = this.remarks;
   }
 }

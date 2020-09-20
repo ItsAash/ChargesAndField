@@ -1,4 +1,23 @@
 const selectMode = document.querySelector("select");
+
+var toNullPoint = () => {
+  if (chargesClone.length) {
+    charges = chargesClone.slice(0, 2);
+
+    const body = document.querySelector("body");
+    const script = document.createElement("script");
+    script.src = "modes/nullPointBetweenCharge.js";
+    script.className = "modeScript";
+    body.appendChild(script);
+
+    setTimeout(() => {
+      nullPoint = new NullPointMode(magField, charges);
+      document.getElementById("remarks__here").innerHTML = nullPoint.remarks;
+      document.getElementById("maths__here").innerHTML = nullPoint.maths;
+    }, 500);
+  }
+};
+
 var toCircularMotion = () => {
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
@@ -52,10 +71,26 @@ var toFieldLine = () => {
   }
 };
 
-selectMode.addEventListener("change", (e) => {
+selectMode.addEventListener("change", whileChanged);
+
+function whileChanged(e) {
   fieldLine = undefined;
   motion = undefined;
   ratio = undefined;
+  nullPoint = undefined;
+  basicMode = false;
+
+  const modeScript = document.querySelector(".modeScript");
+  if (modeScript) {
+    charges = [...chargesClone];
+    const body = document.querySelector("body");
+
+    body.removeChild(modeScript);
+    for (const c of charges) {
+      c.render();
+    }
+  }
+
   switch (selectMode.value) {
     case "CircularMotion":
       toCircularMotion();
@@ -66,18 +101,6 @@ selectMode.addEventListener("change", (e) => {
       // fieldLine = undefined;
       // motion = undefined;
       // ratio = undefined;
-
-      const modeScript = document.querySelector(".modeScript");
-      if (modeScript) {
-        charges = [...chargesClone];
-        const body = document.querySelector("body");
-
-        body.removeChild(modeScript);
-        for (const c of charges) {
-          c.render();
-        }
-      }
-
       break;
 
     case "FieldLine":
@@ -86,7 +109,10 @@ selectMode.addEventListener("change", (e) => {
     case "RatioBetweenForces":
       toRatioBetweenForces();
       break;
+    case "NullPoint":
+      toNullPoint();
+      break;
     default:
       break;
   }
-});
+}

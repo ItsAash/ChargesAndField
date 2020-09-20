@@ -2,6 +2,7 @@ class Grid {
   constructor(i, j) {
     this.i = i;
     this.j = j;
+    this.force = createVector();
   }
 
   show(charges) {
@@ -15,6 +16,7 @@ class Grid {
     }
     sum.mult(200);
     sum.limit(20);
+    this.force = sum;
 
     rectMode(CENTER);
     noFill();

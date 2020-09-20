@@ -9,6 +9,7 @@ const negPosCharge = document.getElementById("neg__button");
 let motion;
 let fieldLine;
 let ratio;
+let nullPoint;
 
 const size = 30;
 let cols;
@@ -61,6 +62,10 @@ function setup() {
     }
   }
   frameRate(200);
+
+  whileChanged();
+
+  // nullPoint = new NullPointMode(magField, charges);
 }
 
 function draw() {
@@ -92,6 +97,9 @@ function draw() {
 
   if (ratio) {
     ratio.init();
+  }
+  if (nullPoint) {
+    nullPoint.init();
   }
   drawBin();
 }
@@ -173,7 +181,7 @@ function addCharge(e) {
   var arge;
 
   var error = false;
-  if (charges.length >= 5 || (charges.length == 2 && circularMode)) {
+  if (charges.length >= 5) {
     document.querySelector(".chargeError").style.display = "block";
     setTimeout(() => {
       document.querySelector(".chargeError").style.display = "none";
@@ -186,12 +194,6 @@ function addCharge(e) {
       if (PC > 0) {
         charges.push(new Charge(width / 2, height / 2, PC, false));
         chargesClone = [...charges];
-        if (
-          document.querySelector("select").value == "CircularMotion" &&
-          !circularMode
-        ) {
-          toCircularMotion();
-        }
       }
     } else if (target.id === "neg__button") {
       const NC = document.querySelector(".neg_input").value; //NC => Negative Charge
@@ -202,7 +204,5 @@ function addCharge(e) {
       }
     }
   }
-  if (circularMode && !error) {
-    motion = new CircularMode(charges[charges.length - 1], 0.07, 100);
-  }
+  whileChanged();
 }
