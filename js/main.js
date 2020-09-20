@@ -136,7 +136,7 @@ function mouseDragged() {
       c.pos.y > binOptions.y &&
       c.pos.y < binOptions.y + binOptions.height
     ) {
-      c.kill(motion || null);
+      c.kill();
       charges = charges.filter((charge) => charge.id != c.id);
       if (fieldLineMode && charges.length < 2) {
         document.querySelector("select").value = "BasicModel";
@@ -189,13 +189,15 @@ function addCharge(e) {
   var arge;
 
   var error = false;
-  if (charges.length >= 5) {
+  if (charges.length >= 5 || (motion && charges.length >= 2)) {
     document.querySelector(".chargeError").style.display = "block";
     setTimeout(() => {
       document.querySelector(".chargeError").style.display = "none";
     }, 3000);
     error = true;
   } else {
+    // motion = ()
+
     if (target.id === "pos__button") {
       const PC = document.querySelector(".pos_input").value; //PC => Positive Charge
 
@@ -211,6 +213,8 @@ function addCharge(e) {
         chargesClone = [...charges];
       }
     }
+    if (charges.length === 1) {
+      whileChanged();
+    }
   }
-  whileChanged();
 }

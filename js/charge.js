@@ -7,7 +7,6 @@ class Charge {
     this.id = id += 1;
 
     this.r = 0;
-    this.number = charges.length + 1;
   }
 
   fieldLine(x, y) {
@@ -19,6 +18,7 @@ class Charge {
 
   render() {
     this.r = 20;
+    this.number = charges.indexOf(this) + 1;
 
     if (this.charge > 0) {
       noStroke();
@@ -41,10 +41,14 @@ class Charge {
     }
   }
 
-  kill(motion) {
+  kill() {
     this.charge = 0;
-    motion.deleted = true;
     motion = undefined;
+    whileChanged();
+
+    charges.forEach((charge) => {
+      charge.number = charges.indexOf(charge);
+    });
   }
 }
 
