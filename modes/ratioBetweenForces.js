@@ -8,6 +8,22 @@ class RatioOfForces {
 
   init() {
     this.updateMaths();
+    this.draw();
+  }
+
+  draw() {
+    push();
+    if (this.charges.length === 2) {
+      strokeWeight(2);
+      stroke(0, 204, 0);
+      line(
+        charges[0].pos.x,
+        charges[0].pos.y,
+        charges[1].pos.x,
+        charges[1].pos.y
+      );
+    }
+    pop();
   }
   updateMaths() {
     if (this.charges < 2) return;
