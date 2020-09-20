@@ -11,6 +11,7 @@ class NullPointMode {
   }
 
   calculateNullPoint() {
+    if (this.charges.length < 2) return;
     for (const cols of this.grids) {
       for (const grid of cols) {
         if (floor(grid.force.mag()) === 0) {

@@ -20,11 +20,12 @@ var toCircularMotion = () => {
       motion = new CircularMode(charges[0], 0.07, 100);
       document.getElementById("remarks__here").innerHTML = motion.remarks;
       document.getElementById("maths__here").innerHTML = motion.maths;
-    }, 500);
+    }, 1000);
   }
 };
 
 var toRatioBetweenForces = () => {
+  circularMode = false;
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
@@ -36,6 +37,8 @@ var toRatioBetweenForces = () => {
 };
 
 var toFieldLine = () => {
+  fieldLineMode = true;
+
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
@@ -43,7 +46,7 @@ var toFieldLine = () => {
       fieldLine = new FieldLines(charges);
       document.getElementById("remarks__here").innerHTML = fieldLine.remarks;
       document.getElementById("maths__here").innerHTML = fieldLine.maths;
-    }, 500);
+    }, 1000);
   }
 };
 
@@ -62,6 +65,7 @@ function whileChanged(e) {
       break;
     case "BasicModel":
       basicMode = true;
+      circularMode = false;
 
       // fieldLine = undefined;
       // motion = undefined;

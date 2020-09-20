@@ -1,3 +1,5 @@
+circularMode = true;
+
 class CircularMode {
   constructor(charge, aVelocity, radius) {
     this.charge = charge;

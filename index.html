@@ -62,10 +62,9 @@
         <option value="NullPoint">Null Point</option>
       </select>
     </div>
-  </div>
 
-  <div class="modal mathModal" id="math-modal">
-    <p onClick="()=>{closeModal(`mathModal`)}" class="modal-close" style="
+    <div class="modal mathModal" id="math-modal">
+      <p onClick="()=>{closeModal(`mathModal`)}" class="modal-close" style="
           font-weight: bolder;
           position: absolute;
           top: 0;
@@ -73,19 +72,19 @@
           margin: 10px;
           cursor: pointer;
         ">
-      X
-    </p>
-    <div class="container section">
-      <h5 class="center">Mathmetical Interpretations</h5>
-      <p id="maths__here">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure quasi
-        quae ad autem ut. Molestiae nostrum velit libero aperiam facere.
+        X
       </p>
+      <div class="container section">
+        <h5 class="center">Mathmetical Interpretations</h5>
+        <p id="maths__here">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure quasi
+          quae ad autem ut. Molestiae nostrum velit libero aperiam facere.
+        </p>
+      </div>
     </div>
-  </div>
 
-  <div class="modal summaryModal" id="summary-modal">
-    <p onClick="()=>{closeModal(`summaryModal`)}" class="modal-close" style="
+    <div class="modal summaryModal" id="summary-modal">
+      <p onClick="()=>{closeModal(`summaryModal`)}" class="modal-close" style="
           font-weight: bolder;
           position: absolute;
           top: 0;
@@ -93,42 +92,42 @@
           margin: 10px;
           cursor: pointer;
         ">
-      X
-    </p>
-    <div class="container section">
-      <h5 class="center">Remarks</h5>
-      <p id="remarks__here">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam ex
-        architecto quod iste aliquid quos. Id corporis porro recusandae
-        voluptatem eveniet asperiores fugit. Explicabo, minima voluptas?
-        Ducimus quibusdam nesciunt aut?
+        X
       </p>
+      <div class="container section">
+        <h5 class="center">Remarks</h5>
+        <p id="remarks__here">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam ex
+          architecto quod iste aliquid quos. Id corporis porro recusandae
+          voluptatem eveniet asperiores fugit. Explicabo, minima voluptas?
+          Ducimus quibusdam nesciunt aut?
+        </p>
+      </div>
     </div>
-  </div>
 
-  <script src="modes/circularMotion.js"></script>
-  <script src="modes/fieldLinesAndDipole.js"></script>
-  <script src="modes/nullPointBetweenCharge.js"></script>
-  <script src="modes/ratioBetweenForces.js"></script>
-
+    <script src="modes/circularMotion.js"></script>
+    <script src="modes/fieldLinesAndDipole.js"></script>
+    <script src="modes/nullPointBetweenCharge.js"></script>
+    <script src="modes/ratioBetweenForces.js"></script>
 
 
-  <script src="js/modeChange.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/grid.js"></script>
-  <script src="js/charge.js"></script>
-  <script>
-    M.AutoInit();
-    const closeModal = (className) => {
-      const modal = document.querySelector(`.${className}`);
-      M.Modal.getInstance(modal).close();
-    };
+
+    <script src="js/modeChange.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/charge.js"></script>
+    <script>
+      M.AutoInit();
+      const closeModal = (className) => {
+        const modal = document.querySelector(`.${className}`);
+        M.Modal.getInstance(modal).close();
+      };
 
       // const circularMotion = document.querySelector(".circular");
       // circularMotion.addEventListener("click", () => {
 
       // });
-  </script>
+    </script>
 </body>
 
 </html>
