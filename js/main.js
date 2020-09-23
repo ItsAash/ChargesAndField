@@ -128,8 +128,15 @@ function mouseDragged() {
     }
   } else {
     const c = currentlyDragging.charge;
+    const currentlySelectedMode = document.querySelector("select").value;
+
+    circularMode = currentlySelectedMode === "CircularMotion" ? true : false;
+    const isNullPointActive =
+      currentlySelectedMode === "NullPoint" ? true : false;
+
     c.pos.x = mouseX;
-    c.pos.y = mouseY;
+    c.pos.y = isNullPointActive ? height / 2 : mouseY;
+
     if (
       c.pos.x > binOptions.x &&
       c.pos.x < binOptions.x + binOptions.width &&
@@ -199,14 +206,14 @@ function addCharge(e) {
     // motion = ()
 
     if (target.id === "pos__button") {
-      const PC = document.querySelector(".pos_input").value; //PC => Positive Charge
+      const PC = +document.querySelector(".pos_input").value; //PC => Positive Charge
 
       if (PC > 0) {
         charges.push(new Charge(width / 2, height / 2, PC, false));
         chargesClone = [...charges];
       }
     } else if (target.id === "neg__button") {
-      const NC = document.querySelector(".neg_input").value; //NC => Negative Charge
+      const NC = +document.querySelector(".neg_input").value; //NC => Negative Charge
 
       if (NC > 0) {
         charges.push(new Charge(width / 2, height / 2, -NC, false));
@@ -215,6 +222,30 @@ function addCharge(e) {
     }
     if (charges.length === 1) {
       whileChanged();
+    }
+  }
+}
+
+function mousePressed() {
+  if (nullPoint) {
+    if (charges.length < 2) return;
+    const point = nullPoint.calculateNullPoint();
+    console.log(point);
+  }
+
+  return;
+  const x = mouseX;
+  const y = mouseY;
+
+  const i = floor(x / size);
+  const j = floor(y / size);
+
+  for (const cols of magField) {
+    for (const grid of cols) {
+      if (grid.i === i && grid.j === j) {
+        grid.highlight();
+        console.log(grid.force.mag());
+      }
     }
   }
 }

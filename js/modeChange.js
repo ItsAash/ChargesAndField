@@ -4,6 +4,10 @@ var toNullPoint = () => {
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
+    for (const charge of charges) {
+      charge.pos.y = height / 2;
+    }
+
     setTimeout(() => {
       nullPoint = new NullPointMode(magField, charges);
       document.getElementById("remarks__here").innerHTML = nullPoint.remarks;
@@ -82,6 +86,11 @@ function whileChanged(e) {
       toNullPoint();
       break;
     default:
+      basicMode = true;
+      fieldLine = undefined;
+      motion = undefined;
+      ratio = undefined;
+      nullPoint = undefined;
       break;
   }
 }

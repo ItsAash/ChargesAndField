@@ -60,8 +60,12 @@ class RatioOfForces {
         " x 10^"
       )} N <br>
       Ratio Between Electrostatic Force to Gravitational Force (Fe/Fg)= ${ratio
+
         .toExponential()
-        .replace(/e\+?/, " x 10^")}
+        .replace(/e\+?/, " x 10^")}<br>
+      Hence the magnitude of Electrostatic Force is  ${ratio
+        .toExponential()
+        .replace(/e\+?/, " x 10^")} times greater than Gravitational Force.
     `;
 
     document.getElementById("maths__here").innerHTML = maths;

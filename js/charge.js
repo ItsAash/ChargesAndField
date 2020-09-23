@@ -61,3 +61,13 @@ function distBetnCharges(charge1, charge2) {
   );
   return (distance + (charge1.r + charge2.r)) / 125;
 }
+
+function actualDistBetnCharges(charge1, charge2) {
+  const distance = dist(
+    charge1.pos.x,
+    charge1.pos.y,
+    charge2.pos.x,
+    charge2.pos.y
+  );
+  return distance;
+}
