@@ -1,5 +1,6 @@
 //CURIOSITY
 var basicMode = true;
+
 var circularMode; // This is needed. Don't delete it.
 var fieldLineMode; //This too
 // DOM variables
@@ -130,13 +131,11 @@ function mouseDragged() {
     ) {
       c.kill(motion || null);
       charges = charges.filter((charge) => charge.id != c.id);
-      if (fieldLineMode && charges.length < 2) {
-        document.querySelector("select").value = "BasicModel";
-        fieldLineMode = false;
-      }
+
       if (circularMode) {
         motion = new CircularMode(charges[0], 0.07, 100);
       }
+
       chargesClone = [...charges];
     }
   }
@@ -202,6 +201,11 @@ function addCharge(e) {
           !circularMode
         ) {
           toCircularMotion();
+        } else if (
+          document.querySelector("select").value == "FieldLine" &&
+          !fieldLineMode
+        ) {
+          toFieldLine();
         }
       }
     } else if (target.id === "neg__button") {
@@ -210,6 +214,18 @@ function addCharge(e) {
       if (NC > 0) {
         charges.push(new Charge(width / 2, height / 2, -NC, false));
         chargesClone = [...charges];
+
+        if (
+          document.querySelector("select").value == "CircularMotion" &&
+          !circularMode
+        ) {
+          toCircularMotion();
+        } else if (
+          document.querySelector("select").value == "FieldLine" &&
+          !fieldLineMode
+        ) {
+          toFieldLine();
+        }
       }
     }
   }

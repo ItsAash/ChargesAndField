@@ -42,9 +42,11 @@ class Charge {
   }
 
   kill(motion) {
-    this.charge = 0;
-    motion.deleted = true;
-    motion = undefined;
+    if (motion) {
+      this.charge = 0;
+      motion.deleted = true;
+      motion = undefined;
+    }
   }
 }
 
