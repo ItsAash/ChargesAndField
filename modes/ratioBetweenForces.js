@@ -48,23 +48,22 @@ class RatioOfForces {
     const maths = `
       Charge of 1 (q1) = ${q1} C <br>
       Charge of 2 (q2) = ${q2} C <br>
-      Mass of 1 (m1) = ${m1.toExponential().replace(/e\+?/, " x 10^")} KG<br>
-      Mass of 2 (m2) = ${m2.toExponential().replace(/e\+?/, " x 10^")} KG<br>
+      Mass of 1 (m1) = ${m1.toExponential(2).replace(/e\+?/, " x 10^")} KG<br>
+      Mass of 2 (m2) = ${m2.toExponential(2).replace(/e\+?/, " x 10^")} KG<br>
       Distance between them (r) = ${r} meters <br>
-      Electrostatic Force (Fe) = ${Fe.toExponential().replace(
+      Electrostatic Force (Fe) = ${Fe.toExponential(2).replace(
         /e\+?/,
         " x 10^"
       )} C/m2 <br>
-      Gravitational Force (Fg) = ${Fg.toExponential().replace(
+      Gravitational Force (Fg) = ${Fg.toExponential(2).replace(
         /e\+?/,
         " x 10^"
       )} N <br>
       Ratio Between Electrostatic Force to Gravitational Force (Fe/Fg)= ${ratio
-
-        .toExponential()
+        .toExponential(2)
         .replace(/e\+?/, " x 10^")}<br>
       Hence the magnitude of Electrostatic Force is  ${ratio
-        .toExponential()
+        .toExponential(2)
         .replace(/e\+?/, " x 10^")} times greater than Gravitational Force.
     `;
 

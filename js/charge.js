@@ -71,3 +71,11 @@ function actualDistBetnCharges(charge1, charge2) {
   );
   return distance;
 }
+
+function vectorDistCharges(charges1, charges2) {
+  const vector1 = charges1.pos;
+  const vector2 = charges2.pos;
+
+  const resultVector = p5.Vector.sub(vector2, vector1);
+  return resultVector;
+}
