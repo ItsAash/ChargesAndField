@@ -60,8 +60,7 @@ class NullPointMode {
       if (posCharge.charge > -negCharge.charge) {
         chargeDistVector.normalize();
         chargeDistVector.setMag(answers[1]);
-        posDiffVec = chargeDistVector;
-        chargeDistVector.mult(-1);
+        posDiffVec = p5.Vector.mult(chargeDistVector, -1);
       } else {
         chargeDistVector.normalize();
         chargeDistVector.setMag(Math.abs(answers[1]));
