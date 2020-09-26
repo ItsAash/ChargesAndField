@@ -2,8 +2,33 @@ class NullPointMode {
   constructor(grids, charges) {
     this.grids = grids;
     this.charges = charges;
-    this.remarks = "null point";
-    this.maths = "null point";
+    this.remarks =
+      "At null points, the net force (intensity also) produced by different charges cancel out to have zero field at that particular point. ";
+    this.maths = "";
+  }
+
+  updateMaths(answers) {
+    if (this.charges.length < 2) return;
+    const maths = `
+      Distance between them (R) = ${distBetnCharges(
+        this.charges[0],
+        this.charges[1]
+      ).toFixed(2)}meters<br>
+      <p>
+        <b>Let, A be the null point.</b> <br>
+        Equating intensities at A, <br>
+        (k.q1)/x2 = (k.q2)/(R-x)2 <br>
+        Or, q1.(R-x)2 = q2.x2 <br>
+        Or, q1.(R2 - 2Rx + x2) = q2.x2 <br>
+        Or, q1.R2 - (2q1.R)x + q1.x2 = q2.x2 <br>
+        Or, (q2-q1)x2 + (2q1.R)x - q1R2 = 0 <br>
+        <b>Using Quadratic equation,</b> <br>
+        X<sub>1</sub> = ${(answers[0] / 125).toFixed(2)} <br>
+        X<sub>2</sub> = ${(answers[1] / 125).toFixed(2)}
+      </p>
+    `;
+
+    document.getElementById("maths__here").innerHTML = maths;
   }
 
   init() {
@@ -14,6 +39,7 @@ class NullPointMode {
     if (this.charges.length < 2) return;
 
     const answers = this.calculateNullPoint();
+    this.updateMaths(answers);
 
     if (
       answers.includes(NaN) ||
