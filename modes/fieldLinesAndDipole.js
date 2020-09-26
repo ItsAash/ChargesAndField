@@ -4,8 +4,6 @@ class FieldLines {
 
     this.remarks =
       "A dipole moment is a mesurement of the seperation of two opposite electrical charges.";
-
-    document.getElementById("remarks__here").innerHTML = this.remarks;
   }
 
   updateMaths() {
@@ -14,6 +12,7 @@ class FieldLines {
     const distance = distBetnCharges(this.charges[0], this.charges[1]).toFixed(
       2
     );
+    document.getElementById("remarks__here").innerHTML = this.remarks;
 
     const dipoleMoment = (q * distance).toFixed(2);
 

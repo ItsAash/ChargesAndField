@@ -1,7 +1,6 @@
-circularMode = true;
-
 class CircularMode {
   constructor(charge, aVelocity, radius) {
+    if (charges.length === 0) return;
     this.charge = charge;
     this.aVel = aVelocity;
     this.aVelFixed = aVelocity;
@@ -21,6 +20,8 @@ class CircularMode {
   }
 
   updateMaths() {
+    document.getElementById("remarks__here").innerHTML = this.remarks;
+
     this.maths = `Angular Velocity (ω) = ${(() => {
       return floor(this.aVelFixed * 60);
     })()} radians per sec`;
@@ -30,6 +31,7 @@ class CircularMode {
   }
 
   init() {
+    if (charges.length === 0) return;
     this.updateMaths();
     this.update();
     this.revolve();

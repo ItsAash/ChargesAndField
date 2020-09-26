@@ -1,7 +1,9 @@
 //CURIOSITY
 var basicMode = true;
+
 var circularMode; // This is needed. Don't delete it.
 var fieldLineMode; //This too
+var ratioMode;
 // DOM variables
 const addPosCharge = document.getElementById("pos__button");
 const negPosCharge = document.getElementById("neg__button");
@@ -145,13 +147,11 @@ function mouseDragged() {
     ) {
       c.kill();
       charges = charges.filter((charge) => charge.id != c.id);
-      if (fieldLineMode && charges.length < 2) {
-        document.querySelector("select").value = "BasicModel";
-        fieldLineMode = false;
-      }
+
       if (circularMode) {
         motion = new CircularMode(charges[0], 0.07, 100);
       }
+
       chargesClone = [...charges];
     }
   }
@@ -196,7 +196,10 @@ function addCharge(e) {
   var arge;
 
   var error = false;
-  if (charges.length >= 5 || (motion && charges.length >= 2)) {
+  if (
+    charges.length >= 5 ||
+    (charges.length == 2 && (circularMode || fieldLineMode || ratioMode))
+  ) {
     document.querySelector(".chargeError").style.display = "block";
     setTimeout(() => {
       document.querySelector(".chargeError").style.display = "none";
@@ -211,13 +214,27 @@ function addCharge(e) {
       if (PC > 0) {
         charges.push(new Charge(width / 2, height / 2, PC, false));
         chargesClone = [...charges];
+        const selectorValue = document.querySelector("select").value;
+        if (selectorValue === "CircularMotion" && !circularMode) {
+          toCircularMotion();
+        } else if (selectorValue === "FieldLine" && !fieldLineMode) {
+          toFieldLine();
+        } else if (selectorValue === "RatioBetweenForces" && !ratioMode) {
+          toRatioBetweenForces();
+        }
       }
     } else if (target.id === "neg__button") {
-      const NC = +document.querySelector(".neg_input").value; //NC => Negative Charge
-
+      const NC = document.querySelector(".neg_input").value; //NC => Negative Charge
+      const selectorValue = document.querySelector("select").value;
       if (NC > 0) {
         charges.push(new Charge(width / 2, height / 2, -NC, false));
         chargesClone = [...charges];
+
+        if (selectorValue == "CircularMotion" && !circularMode) {
+          toCircularMotion();
+        } else if (selectorValue == "FieldLine" && !fieldLineMode) {
+          toFieldLine();
+        }
       }
     }
     if (charges.length === 1) {

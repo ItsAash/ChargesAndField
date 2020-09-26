@@ -1,5 +1,15 @@
 const selectMode = document.querySelector("select");
+var toBasicMode = () => {
+  basicMode = true;
+  charges = [...chargesClone];
 
+  for (c of charges) {
+    c.render();
+  }
+  // fieldLine = undefined;
+  // motion = undefined;
+  // ratio = undefined;
+};
 var toNullPoint = () => {
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
@@ -17,6 +27,7 @@ var toNullPoint = () => {
 };
 
 var toCircularMotion = () => {
+  circularMode = true;
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
@@ -29,8 +40,9 @@ var toCircularMotion = () => {
 };
 
 var toRatioBetweenForces = () => {
-  circularMode = false;
   if (chargesClone.length) {
+    ratioMode = true;
+
     charges = chargesClone.slice(0, 2);
 
     setTimeout(() => {
@@ -41,9 +53,9 @@ var toRatioBetweenForces = () => {
 };
 
 var toFieldLine = () => {
-  fieldLineMode = true;
+  if (chargesClone.length > 1) {
+    fieldLineMode = true;
 
-  if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
     setTimeout(() => {
@@ -58,22 +70,24 @@ selectMode.addEventListener("change", whileChanged);
 
 function whileChanged(e) {
   fieldLine = undefined;
+  fieldLineMode = false;
+  circularMode = false;
   motion = undefined;
   ratio = undefined;
   nullPoint = undefined;
   basicMode = false;
+  nullPointMode = false;
+  document.getElementById("maths__here").innerHTML =
+    "<p style='color:red; text-align:center'>Add necessary charges</p>";
+  document.getElementById("remarks__here").innerHTML =
+    "<p style='color:red; text-align:center'>Add necessary charges</p>";
 
   switch (selectMode.value) {
     case "CircularMotion":
       toCircularMotion();
       break;
     case "BasicModel":
-      basicMode = true;
-      circularMode = false;
-
-      // fieldLine = undefined;
-      // motion = undefined;
-      // ratio = undefined;
+      toBasicMode();
       break;
 
     case "FieldLine":
@@ -91,6 +105,7 @@ function whileChanged(e) {
       motion = undefined;
       ratio = undefined;
       nullPoint = undefined;
+      circularMode = false;
       break;
   }
 }
