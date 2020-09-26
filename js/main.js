@@ -12,6 +12,7 @@ const negPosCharge = document.getElementById("neg__button");
 let motion;
 let fieldLine;
 let ratio;
+let nullPoint;
 
 const size = 30;
 let cols;
@@ -64,6 +65,10 @@ function setup() {
     }
   }
   frameRate(200);
+
+  whileChanged();
+
+  // nullPoint = new NullPointMode(magField, charges);
 }
 
 function draw() {
@@ -96,6 +101,9 @@ function draw() {
   if (ratio) {
     ratio.init();
   }
+  if (nullPoint) {
+    nullPoint.init();
+  }
   drawBin();
 }
 
@@ -122,15 +130,22 @@ function mouseDragged() {
     }
   } else {
     const c = currentlyDragging.charge;
+    const currentlySelectedMode = document.querySelector("select").value;
+
+    circularMode = currentlySelectedMode === "CircularMotion" ? true : false;
+    const isNullPointActive =
+      currentlySelectedMode === "NullPoint" ? true : false;
+
     c.pos.x = mouseX;
-    c.pos.y = mouseY;
+    c.pos.y = isNullPointActive ? height / 2 : mouseY;
+
     if (
       c.pos.x > binOptions.x &&
       c.pos.x < binOptions.x + binOptions.width &&
       c.pos.y > binOptions.y &&
       c.pos.y < binOptions.y + binOptions.height
     ) {
-      c.kill(motion || null);
+      c.kill();
       charges = charges.filter((charge) => charge.id != c.id);
 
       if (circularMode) {
@@ -191,8 +206,10 @@ function addCharge(e) {
     }, 3000);
     error = true;
   } else {
+    // motion = ()
+
     if (target.id === "pos__button") {
-      const PC = document.querySelector(".pos_input").value; //PC => Positive Charge
+      const PC = +document.querySelector(".pos_input").value; //PC => Positive Charge
 
       if (PC > 0) {
         charges.push(new Charge(width / 2, height / 2, PC, false));
@@ -220,8 +237,32 @@ function addCharge(e) {
         }
       }
     }
+    if (charges.length === 1) {
+      whileChanged();
+    }
   }
-  if (circularMode && !error) {
-    motion = new CircularMode(charges[charges.length - 1], 0.07, 100);
+}
+
+function mousePressed() {
+  if (nullPoint) {
+    if (charges.length < 2) return;
+    const point = nullPoint.calculateNullPoint();
+    console.log(point);
+  }
+
+  return;
+  const x = mouseX;
+  const y = mouseY;
+
+  const i = floor(x / size);
+  const j = floor(y / size);
+
+  for (const cols of magField) {
+    for (const grid of cols) {
+      if (grid.i === i && grid.j === j) {
+        grid.highlight();
+        console.log(grid.force.mag());
+      }
+    }
   }
 }

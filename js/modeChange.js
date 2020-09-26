@@ -92,6 +92,7 @@ function whileChanged(e) {
   ratio = undefined;
   nullPoint = undefined;
   basicMode = false;
+  NullPointMode = false;
   document.getElementById("maths__here").innerHTML =
     "<p style='color:red; text-align:center'>Add necessary charges</p>";
   document.getElementById("remarks__here").innerHTML =
