@@ -1,5 +1,3 @@
-circularMode = true;
-
 class CircularMode {
   constructor(charge, aVelocity, radius) {
     this.charge = charge;
@@ -27,6 +25,8 @@ class CircularMode {
       return floor(this.aVelFixed * 60);
     })()} radians per sec`;
     document.getElementById("maths__here").innerHTML = this.maths;
+
+    document.getElementById("remarks__here").innerHTML = this.remarks;
   }
 
   init() {

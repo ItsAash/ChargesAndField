@@ -51,7 +51,7 @@ input[type="range"] {
 .modeChange {
   position: absolute;
   z-index: 2000;
-  color: white;
+  color: black;
   top: 5%;
   left: 0;
   padding: 20px;

@@ -3,6 +3,7 @@ var basicMode = true;
 
 var circularMode; // This is needed. Don't delete it.
 var fieldLineMode; //This too
+var ratioMode;
 // DOM variables
 const addPosCharge = document.getElementById("pos__button");
 const negPosCharge = document.getElementById("neg__button");
@@ -182,7 +183,7 @@ function addCharge(e) {
   var error = false;
   if (
     charges.length >= 5 ||
-    (charges.length == 2 && (circularMode || fieldLineMode))
+    (charges.length == 2 && (circularMode || fieldLineMode || ratioMode))
   ) {
     document.querySelector(".chargeError").style.display = "block";
     setTimeout(() => {
@@ -196,34 +197,25 @@ function addCharge(e) {
       if (PC > 0) {
         charges.push(new Charge(width / 2, height / 2, PC, false));
         chargesClone = [...charges];
-        if (
-          document.querySelector("select").value == "CircularMotion" &&
-          !circularMode
-        ) {
+        const selectorValue = document.querySelector("select").value;
+        if (selectorValue === "CircularMotion" && !circularMode) {
           toCircularMotion();
-        } else if (
-          document.querySelector("select").value == "FieldLine" &&
-          !fieldLineMode
-        ) {
+        } else if (selectorValue === "FieldLine" && !fieldLineMode) {
           toFieldLine();
+        } else if (selectorValue === "RatioBetweenForces" && !ratioMode) {
+          toRatioBetweenForces();
         }
       }
     } else if (target.id === "neg__button") {
       const NC = document.querySelector(".neg_input").value; //NC => Negative Charge
-
+      const selectorValue = document.querySelector("select").value;
       if (NC > 0) {
         charges.push(new Charge(width / 2, height / 2, -NC, false));
         chargesClone = [...charges];
 
-        if (
-          document.querySelector("select").value == "CircularMotion" &&
-          !circularMode
-        ) {
+        if (selectorValue == "CircularMotion" && !circularMode) {
           toCircularMotion();
-        } else if (
-          document.querySelector("select").value == "FieldLine" &&
-          !fieldLineMode
-        ) {
+        } else if (selectorValue == "FieldLine" && !fieldLineMode) {
           toFieldLine();
         }
       }

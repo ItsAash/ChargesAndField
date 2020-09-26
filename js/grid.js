@@ -2,6 +2,7 @@ class Grid {
   constructor(i, j) {
     this.i = i;
     this.j = j;
+    this.force = createVector();
   }
 
   show(charges) {
@@ -13,6 +14,7 @@ class Grid {
       const force = c.fieldLine(x, y);
       sum.add(force);
     }
+    this.force = sum;
     sum.mult(200);
     sum.limit(20);
 
@@ -31,6 +33,17 @@ class Grid {
 
     translate(sum.mag() - arrowSize, 0);
     triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+    pop();
+  }
+
+  highlight() {
+    const x = this.i * size + size / 2;
+    const y = this.j * size + size / 2;
+    push();
+    rectMode(CENTER);
+    fill(255);
+    stroke(255);
+    rect(x, y, size / 2, size / 2);
     pop();
   }
 }

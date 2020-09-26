@@ -7,6 +7,7 @@ class FieldLines {
   }
 
   updateMaths() {
+    if (this.charges.length < 2) return;
     const q = Math.abs(this.charges[0].charge);
     const distance = distBetnCharges(this.charges[0], this.charges[1]).toFixed(
       2

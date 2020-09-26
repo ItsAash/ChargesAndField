@@ -7,7 +7,6 @@ class Charge {
     this.id = id += 1;
 
     this.r = 0;
-    this.number = charges.length + 1;
   }
 
   fieldLine(x, y) {
@@ -19,6 +18,7 @@ class Charge {
 
   render() {
     this.r = 20;
+    this.number = charges.indexOf(this) + 1;
 
     if (this.charge > 0) {
       noStroke();
@@ -41,12 +41,14 @@ class Charge {
     }
   }
 
-  kill(motion) {
-    if (motion) {
-      this.charge = 0;
-      motion.deleted = true;
-      motion = undefined;
-    }
+  kill() {
+    this.charge = 0;
+    motion = undefined;
+    whileChanged();
+
+    charges.forEach((charge) => {
+      charge.number = charges.indexOf(charge);
+    });
   }
 }
 
@@ -58,4 +60,14 @@ function distBetnCharges(charge1, charge2) {
     charge2.pos.y
   );
   return (distance + (charge1.r + charge2.r)) / 125;
+}
+
+function actualDistBetnCharges(charge1, charge2) {
+  const distance = dist(
+    charge1.pos.x,
+    charge1.pos.y,
+    charge2.pos.x,
+    charge2.pos.y
+  );
+  return distance;
 }

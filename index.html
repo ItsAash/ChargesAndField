@@ -1,142 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
-    />
 
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="./style.css" />
-    <script>
-      document.addEventListener("contextmenu", (event) =>
-        event.preventDefault()
-      );
-    </script>
-  </head>
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
 
-  <body>
-    <div class="chargeError">
-      <div class="card red lighten-3 text-white" style="padding: 3px 5px">
-        <p>Maximum number of charge reached</p>
-      </div>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="./style.css" />
+  <script>
+    document.addEventListener("contextmenu", (event) =>
+      event.preventDefault()
+    );
+  </script>
+</head>
+
+<body>
+  <div class="chargeError">
+    <div class="card red lighten-3 text-white" style="padding: 3px 5px">
+      <p>Maximum number of charge reached</p>
     </div>
-    <div class="controllers">
-      <div class="positive">
-        <button class="button__pos btn btn-floating red pulse" id="pos__button">
-          +ve
-        </button>
+  </div>
+  <div class="controllers">
+    <div class="positive">
+      <button class="button__pos btn btn-floating red pulse" id="pos__button">
+        +ve
+      </button>
 
-        <input
-          min="1"
-          max="10"
-          type="range"
-          step="1"
-          class="pos_input white-text"
-          onchange="{
+      <input min="1" max="10" type="range" step="1" class="pos_input white-text" onchange="{
         document.querySelector('.positive_value').textContent= window.event.target.value
-      }"
-        />
-        <p class="positive_value white-text">6</p>
-      </div>
+      }" />
+      <p class="positive_value white-text">6</p>
+    </div>
 
-      <h6 class="white-text">Add Charge</h6>
-      <div class="negative">
-        <button
-          class="button__neg btn btn-floating indigo pulse"
-          id="neg__button"
-        >
-          -ve
-        </button>
-        <input
-          min="1"
-          max="10"
-          type="range"
-          step="1"
-          class="neg_input white-text"
-          onchange="{
+    <h6 class="white-text">Add Charge</h6>
+    <div class="negative">
+      <button class="button__neg btn btn-floating indigo pulse" id="neg__button">
+        -ve
+      </button>
+      <input min="1" max="10" type="range" step="1" class="neg_input white-text" onchange="{
         document.querySelector('.negative_value').textContent= window.event.target.value
-      }"
-        />
-        <p class="negative_value white-text">6</p>
-      </div>
+      }" />
+      <p class="negative_value white-text">6</p>
     </div>
-    <div class="viewButtons">
-      <a href="#math-modal" class="modal-trigger"
-        ><button class="btn waves-effect waves-light">Math</button></a
-      >
+  </div>
+  <div class="viewButtons">
+    <a href="#math-modal" class="modal-trigger"><button class="btn waves-effect waves-light">Math</button></a>
 
-      <a href="#summary-modal" class="modal-trigger"
-        ><button class="btn waves-effect waves-light">Remarks</button></a
-      >
-    </div>
-    <div class="modeChange">
-      <div class="input-field">
-        <select class="change-mode">
-          <option value="" disabled selected>Choose Mode</option>
-          <option value="BasicModel">Basic Model</option>
-          <option value="CircularMotion">Circular Motion</option>
-          <option value="FieldLine">Dipole On Linear Axis</option>
-          <option value="RatioBetweenForces">Ratio between forces</option>
-        </select>
-      </div>
+    <a href="#summary-modal" class="modal-trigger"><button class="btn waves-effect waves-light">Remarks</button></a>
+  </div>
+  <div class="modeChange">
+    <div class="input-field">
+      <select class="change-mode">
+        <option value="" disabled selected>Choose Mode</option>
+        <option value="BasicModel">Basic Model</option>
+        <option value="CircularMotion">Circular Motion</option>
+        <option value="FieldLine">Dipole On Linear Axis</option>
+        <option value="RatioBetweenForces">Ratio between forces</option>
+        <option value="NullPoint">Null Point</option>
+      </select>
     </div>
 
     <div class="modal mathModal" id="math-modal">
-      <p
-        onClick="()=>{closeModal(`mathModal`)}"
-        class="modal-close"
-        style="
+      <p onClick="()=>{closeModal(`mathModal`)}" class="modal-close" style="
           font-weight: bolder;
           position: absolute;
           top: 0;
           right: 0;
           margin: 10px;
           cursor: pointer;
-        "
-      >
+        ">
         X
       </p>
       <div class="container section">
         <h5 class="center">Mathmetical Interpretations</h5>
         <p id="maths__here">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure quasi
-          quae ad autem ut. Molestiae nostrum velit libero aperiam facere.
         </p>
       </div>
     </div>
 
     <div class="modal summaryModal" id="summary-modal">
-      <p
-        onClick="()=>{closeModal(`summaryModal`)}"
-        class="modal-close"
-        style="
+      <p onClick="()=>{closeModal(`summaryModal`)}" class="modal-close" style="
           font-weight: bolder;
           position: absolute;
           top: 0;
           right: 0;
           margin: 10px;
           cursor: pointer;
-        "
-      >
+        ">
         X
       </p>
       <div class="container section">
         <h5 class="center">Remarks</h5>
         <p id="remarks__here">
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam ex
-          architecto quod iste aliquid quos. Id corporis porro recusandae
-          voluptatem eveniet asperiores fugit. Explicabo, minima voluptas?
-          Ducimus quibusdam nesciunt aut?
+
         </p>
       </div>
     </div>
 
-    <!-- <script src="modes/circularMotion.js"></script> -->
+    <script src="modes/circularMotion.js"></script>
+    <script src="modes/fieldLinesAndDipole.js"></script>
+    <script src="modes/nullPointBetweenCharge.js"></script>
+    <script src="modes/ratioBetweenForces.js"></script>
+
+
+
     <script src="js/modeChange.js"></script>
     <script src="js/main.js"></script>
     <script src="js/grid.js"></script>
@@ -153,5 +123,6 @@
 
       // });
     </script>
-  </body>
+</body>
+
 </html>
