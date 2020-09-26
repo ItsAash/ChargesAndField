@@ -196,10 +196,7 @@ function addCharge(e) {
   var arge;
 
   var error = false;
-  if (
-    charges.length >= 5 ||
-    (charges.length == 2 && (circularMode || fieldLineMode || ratioMode))
-  ) {
+  if (charges.length >= 5 || (charges.length == 2 && !basicMode)) {
     document.querySelector(".chargeError").style.display = "block";
     setTimeout(() => {
       document.querySelector(".chargeError").style.display = "none";
