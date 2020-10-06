@@ -11,6 +11,21 @@ var toBasicMode = () => {
   // ratio = undefined;
 };
 var toNullPoint = () => {
+  
+   const neg_input =document.querySelector(".neg_input") ;
+   neg_input.min= 1;
+   neg_input.max = 5;
+   document.querySelector('.negative_value').textContent= neg_input.value;
+
+  const pos_input =document.querySelector(".pos_input") ;
+  pos_input.min =1;
+  pos_input.max = 5;
+  document.querySelector('.positive_value').textContent= pos_input.value;
+
+  
+
+
+
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
@@ -27,12 +42,15 @@ var toNullPoint = () => {
 };
 
 var toCircularMotion = () => {
+  const radius = document.getElementById("radius");
+const radius_value = document.querySelector(".radius"); 
+   radius.style.display= "block";
   circularMode = true;
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
     setTimeout(() => {
-      motion = new CircularMode(charges[0], 0.07, 100);
+      motion = new CircularMode(charges[0], 0.07,parseInt(radius_value.value));
       document.getElementById("remarks__here").innerHTML = motion.remarks;
       document.getElementById("maths__here").innerHTML = motion.maths;
     }, 1000);
@@ -54,14 +72,14 @@ var toRatioBetweenForces = () => {
 
 var toFieldLine = () => {
   document.querySelector(".neg_input").style.display ="none";
-  
+  document.querySelector(".negative_value").style.display = "none";
+  document.querySelector(".pos_input").style.align = "center";
   if (chargesClone.length > 1) {
     fieldLineMode = true;
 
     charges = chargesClone.slice(0, 2);
 
     setTimeout(() => {
-      
       fieldLine = new FieldLines(charges);
       document.getElementById("remarks__here").innerHTML = fieldLine.remarks;
       document.getElementById("maths__here").innerHTML = fieldLine.maths;
@@ -72,7 +90,14 @@ var toFieldLine = () => {
 selectMode.addEventListener("change", whileChanged);
 
 function whileChanged(e) {
-  document.querySelector(".neg_input").style.display = "block";
+  const neg_input =document.querySelector(".neg_input");
+  const pos_input =document.querySelector(".pos_input");
+  document.getElementById("radius").style.display= "none";
+   neg_input.min= 1;
+   neg_input.max = 10;
+   pos_input.min= 1;
+   pos_input.max = 10;
+
   fieldLine = undefined;
   fieldLineMode = false;
   circularMode = false;
