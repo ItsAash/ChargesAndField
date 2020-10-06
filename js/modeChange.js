@@ -53,12 +53,15 @@ var toRatioBetweenForces = () => {
 };
 
 var toFieldLine = () => {
+  document.querySelector(".neg_input").style.display ="none";
+  
   if (chargesClone.length > 1) {
     fieldLineMode = true;
 
     charges = chargesClone.slice(0, 2);
 
     setTimeout(() => {
+      
       fieldLine = new FieldLines(charges);
       document.getElementById("remarks__here").innerHTML = fieldLine.remarks;
       document.getElementById("maths__here").innerHTML = fieldLine.maths;
@@ -69,6 +72,7 @@ var toFieldLine = () => {
 selectMode.addEventListener("change", whileChanged);
 
 function whileChanged(e) {
+  document.querySelector(".neg_input").style.display = "block";
   fieldLine = undefined;
   fieldLineMode = false;
   circularMode = false;

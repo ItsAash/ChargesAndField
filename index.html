@@ -25,6 +25,7 @@
   </div>
   <div class="controllers">
     <div class="positive">
+    
       <button class="button__pos btn btn-floating red pulse" id="pos__button">
         +ve
       </button>
@@ -40,7 +41,7 @@
       <button class="button__neg btn btn-floating indigo pulse" id="neg__button">
         -ve
       </button>
-      <input min="1" max="10" type="range" step="1" class="neg_input white-text" onchange="{
+      <input min="1" max="10"  type="range" step="1" class="neg_input white-text" onchange="{
         document.querySelector('.negative_value').textContent= window.event.target.value
       }" />
       <p class="negative_value white-text">6</p>
