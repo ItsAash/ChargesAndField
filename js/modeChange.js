@@ -71,9 +71,8 @@ var toRatioBetweenForces = () => {
 };
 
 var toFieldLine = () => {
-  document.querySelector(".neg_input").style.display ="none";
+  document.querySelector(".neg_input").style.visibility ="hidden";
   document.querySelector(".negative_value").style.display = "none";
-  document.querySelector(".pos_input").style.align = "center";
   if (chargesClone.length > 1) {
     fieldLineMode = true;
 
@@ -90,6 +89,7 @@ var toFieldLine = () => {
 selectMode.addEventListener("change", whileChanged);
 
 function whileChanged(e) {
+
   const neg_input =document.querySelector(".neg_input");
   const pos_input =document.querySelector(".pos_input");
   document.getElementById("radius").style.display= "none";
@@ -97,7 +97,8 @@ function whileChanged(e) {
    neg_input.max = 10;
    pos_input.min= 1;
    pos_input.max = 10;
-
+   neg_input.style.visibility="visible";
+   document.querySelector(".negative_value").style.display = "block";
   fieldLine = undefined;
   fieldLineMode = false;
   circularMode = false;

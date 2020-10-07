@@ -13,6 +13,8 @@ let motion;
 let fieldLine;
 let ratio;
 let nullPoint;
+document.querySelector(".radius").addEventListener("change",(e)=>{whileChanged()
+  toCircularMotion()});
 
 const size = 30;
 let cols;
