@@ -81,7 +81,6 @@ class NullPointMode {
 
       push();
       ellipseMode(CENTER);
-      ellipse(this.charges[0].pos.x + chargeDistVector.x, height / 2, 10);
 
       if (posCharge.charge > -negCharge.charge) {
         chargeDistVector.normalize();
@@ -102,14 +101,12 @@ class NullPointMode {
         // both are pos charge
         push();
         ellipseMode(CENTER);
-        ellipse(this.charges[0].pos.x + chargeDistVector.x, height / 2, 10);
 
         chargeDistVector.normalize();
         chargeDistVector.setMag(answers[1]);
         chargeDistVector.mult(-1);
 
-        ellipse(this.charges[0].pos.x - chargeDistVector.x, height / 2, 10);
-        ellipse(this.charges[1].pos.x + chargeDistVector.x, height / 2, 10);
+        
         pop();
       } else {
         // both are neg charge
@@ -121,8 +118,7 @@ class NullPointMode {
         chargeDistVector.normalize();
         chargeDistVector.setMag(Math.abs(answers[1]));
 
-        ellipse(this.charges[0].pos.x - chargeDistVector.x, height / 2, 10);
-        ellipse(this.charges[1].pos.x + chargeDistVector.x, height / 2, 10);
+        
         pop();
       }
     }
