@@ -102,7 +102,7 @@ class NullPointMode {
         // both are pos charge
         push();
         ellipseMode(CENTER);
-
+        ellipse(this.charges[0].pos.x + chargeDistVector.x, height / 2, 10);
         chargeDistVector.normalize();
         chargeDistVector.setMag(answers[1]);
         chargeDistVector.mult(-1);
@@ -124,7 +124,6 @@ class NullPointMode {
       }
     }
   }
-
   draw() {
     push();
     if (this.charges.length === 2) {
