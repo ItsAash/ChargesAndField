@@ -11,6 +11,7 @@ var toBasicMode = () => {
   // ratio = undefined;
 };
 var toNullPoint = () => {
+  document.querySelector(".neg_input").style.display = "none";
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
