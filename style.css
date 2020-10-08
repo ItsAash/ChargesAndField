@@ -9,6 +9,21 @@ canvas {
   height: 100%;
 }
 
+.radius svg {
+
+  fill: rgba(255, 255, 255, 0.87) !important;
+}
+
+.radius {
+  max-width: 100px;
+  color: white;
+
+}
+
+#radius {
+  margin-left: 20px;
+}
+
 .controllers {
   position: absolute;
   display: flex;
@@ -46,6 +61,7 @@ canvas {
 
 input[type="range"] {
   border: none;
+
 }
 
 .modeChange {

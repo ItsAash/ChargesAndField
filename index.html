@@ -28,11 +28,13 @@
       <button class="button__pos btn btn-floating red pulse" id="pos__button">
         +ve
       </button>
+      <div class="pos-controller">
 
       <input min="1" max="10" type="range" step="1" class="pos_input white-text" onchange="{
         document.querySelector('.positive_value').textContent= window.event.target.value
       }" />
       <p class="positive_value white-text">6</p>
+      </div>
     </div>
 
     <h6 class="white-text">Add Charge</h6>
@@ -40,12 +42,20 @@
       <button class="button__neg btn btn-floating indigo pulse" id="neg__button">
         -ve
       </button>
+      <div class="neg-controller">
       <input min="1" max="10" type="range" step="1" class="neg_input white-text" onchange="{
         document.querySelector('.negative_value').textContent= window.event.target.value
       }" />
       <p class="negative_value white-text">6</p>
     </div>
+    </div>
+    <div id="radius" class ="white-text">
+    <input type="number" value="100" min="80" max="300" class="radius " step="10"
+     />
+    <p>Enter Radius</p>
+</div>
   </div>
+  
   <div class="viewButtons">
     <a href="#math-modal" class="modal-trigger"><button class="btn waves-effect waves-light">Math</button></a>
 

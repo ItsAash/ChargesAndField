@@ -128,6 +128,8 @@ class NullPointMode {
     }
   }
 
+  
+
   calculateNullPoint() {
     const vectorDiff = vectorDistCharges(charges[0], charges[1]);
     const R = vectorDiff.mag();

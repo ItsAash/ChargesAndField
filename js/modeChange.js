@@ -11,7 +11,16 @@ var toBasicMode = () => {
   // ratio = undefined;
 };
 var toNullPoint = () => {
-  document.querySelector(".neg_input").style.display = "none";
+  const neg_input = document.querySelector(".neg_input");
+  neg_input.min = 1;
+  neg_input.max = 5;
+  document.querySelector(".negative_value").textContent = neg_input.value;
+
+  const pos_input = document.querySelector(".pos_input");
+  pos_input.min = 1;
+  pos_input.max = 5;
+  document.querySelector(".positive_value").textContent = pos_input.value;
+
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
@@ -28,12 +37,15 @@ var toNullPoint = () => {
 };
 
 var toCircularMotion = () => {
+  const radius = document.getElementById("radius");
+  const radius_value = document.querySelector(".radius");
+  radius.style.display = "block";
   circularMode = true;
   if (chargesClone.length) {
     charges = chargesClone.slice(0, 2);
 
     setTimeout(() => {
-      motion = new CircularMode(charges[0], 0.07, 100);
+      motion = new CircularMode(charges[0], 0.07, parseInt(radius_value.value));
       document.getElementById("remarks__here").innerHTML = motion.remarks;
       document.getElementById("maths__here").innerHTML = motion.maths;
     }, 1000);
@@ -54,6 +66,11 @@ var toRatioBetweenForces = () => {
 };
 
 var toFieldLine = () => {
+  document.querySelector(".neg-controller").style.display = "none";
+  const pos_control = document.querySelector(".pos-controller");
+  pos_control.style.marginRight = "-17em";
+  pos_control.style.marginLeft = "7em";
+
   if (chargesClone.length > 1) {
     fieldLineMode = true;
 
@@ -70,6 +87,18 @@ var toFieldLine = () => {
 selectMode.addEventListener("change", whileChanged);
 
 function whileChanged(e) {
+  const neg_input = document.querySelector(".neg_input");
+
+  const pos_input = document.querySelector(".pos_input");
+  document.getElementById("radius").style.display = "none";
+  neg_input.min = 1;
+  neg_input.max = 10;
+  pos_input.min = 1;
+  pos_input.max = 10;
+  document.querySelector(".neg-controller").style.display = "block";
+  const posv_control = document.querySelector(".pos-controller");
+  posv_control.style.marginRight = "0em";
+  posv_control.style.marginLeft = "0em";
   fieldLine = undefined;
   fieldLineMode = false;
   circularMode = false;
